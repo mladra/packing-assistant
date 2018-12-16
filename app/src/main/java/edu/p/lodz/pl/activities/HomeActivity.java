@@ -1,6 +1,8 @@
-package edu.p.lodz.pl;
+package edu.p.lodz.pl.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import edu.p.lodz.pl.R;
+
 import android.os.Bundle;
 
 public class HomeActivity extends AppCompatActivity {
