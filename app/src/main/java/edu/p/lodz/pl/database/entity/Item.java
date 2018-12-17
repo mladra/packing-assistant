@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "ITEM_T")
+@Entity(tableName = "items")
 public class Item {
 
     @PrimaryKey
@@ -71,5 +71,10 @@ public class Item {
 
     public void setActivity(ActivityEnum activity) {
         this.activity = activity;
+    }
+
+    public static Item[] populateData() {
+        //TODO: mladra: populate data
+        return new Item[] {};
     }
 }

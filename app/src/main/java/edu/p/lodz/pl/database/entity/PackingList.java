@@ -6,7 +6,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "PACKING_LIST_T")
+@Entity(tableName = "packing_lists")
 public class PackingList {
 
     @PrimaryKey
@@ -40,5 +40,10 @@ public class PackingList {
 
     public void setStatus(StatusEnum status) {
         this.status = status;
+    }
+
+    public static PackingList[] populateData() {
+        //TODO: mladra: populate data
+        return new PackingList[] {};
     }
 }

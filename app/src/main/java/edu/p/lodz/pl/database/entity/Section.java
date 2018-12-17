@@ -4,17 +4,17 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "SECTION_T")
+@Entity(tableName = "sections")
 public class Section {
 
     @PrimaryKey
     private int id;
 
-    @ColumnInfo(name = "required")
-    private boolean required;
-
     @ColumnInfo(name = "name")
     private String name;
+
+    @ColumnInfo(name = "required")
+    private boolean required;
 
     public int getId() {
         return id;
@@ -38,5 +38,10 @@ public class Section {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public static Section[] populateData() {
+        //TODO: mladra: populate data
+        return new Section[] {};
     }
 }
