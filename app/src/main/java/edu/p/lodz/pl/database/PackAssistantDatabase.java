@@ -8,7 +8,12 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
+import edu.p.lodz.pl.database.converters.ActivityEnumTypeConverter;
+import edu.p.lodz.pl.database.converters.DateTypeConverter;
+import edu.p.lodz.pl.database.converters.StatusEnumTypeConverter;
+import edu.p.lodz.pl.database.converters.WeatherEnumTypeConverter;
 import edu.p.lodz.pl.database.dao.ItemDao;
 import edu.p.lodz.pl.database.dao.PackingListDao;
 import edu.p.lodz.pl.database.dao.PackingListSectionDao;
@@ -21,6 +26,7 @@ import edu.p.lodz.pl.database.entity.Section;
 import edu.p.lodz.pl.database.entity.SectionItem;
 
 @Database(entities = {Item.class, Section.class, PackingList.class, SectionItem.class, PackingListSection.class}, version = 1)
+@TypeConverters({DateTypeConverter.class, ActivityEnumTypeConverter.class, StatusEnumTypeConverter.class, WeatherEnumTypeConverter.class})
 public abstract class PackAssistantDatabase extends RoomDatabase {
 
     private static final String DB_NAME = "pack-assistant-db";

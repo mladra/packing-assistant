@@ -16,6 +16,12 @@ public class Section {
     @ColumnInfo(name = "required")
     private boolean required;
 
+    public Section(int id, String name, boolean required) {
+        this.id = id;
+        this.name = name;
+        this.required = required;
+    }
+
     public int getId() {
         return id;
     }
@@ -41,7 +47,18 @@ public class Section {
     }
 
     public static Section[] populateData() {
-        //TODO: mladra: populate data
-        return new Section[] {};
+        return new Section[] {
+                new Section(1, "General", true),
+                new Section(2, "Other", false),
+                new Section(3, ActivityEnum.JOGGING.name(), false),
+                new Section(4, ActivityEnum.PLAYING_BASKETBALL.name(), false),
+                new Section(5, ActivityEnum.PLAYING_FOOTBALL.name(), false),
+                new Section(6, ActivityEnum.PLAYING_GOLF.name(), false),
+                new Section(7, ActivityEnum.RIDING_A_BIKE.name(), false),
+                new Section(8, ActivityEnum.SKATING.name(), false),
+                new Section(9, ActivityEnum.SKIING.name(), false),
+                new Section(10, ActivityEnum.SNOWBOARDING.name(), false),
+                new Section(11, ActivityEnum.SWIMMING.name(), false)
+        };
     }
 }

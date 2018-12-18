@@ -3,4 +3,5 @@
     <string name="items_label">Items</string>
     <string name="templates_label">Templates</string>
     <string name="lists_label">Lists</string>
+    <string name="destination_label">Destination</string>
 </resources>

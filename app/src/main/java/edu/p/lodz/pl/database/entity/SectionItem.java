@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 
 @Entity(tableName = "section_item",
-        primaryKeys = {"item_id", "section_id"},
+        primaryKeys = {"section_id", "item_id"},
         foreignKeys = {
                 @ForeignKey(entity = Section.class,
                         parentColumns = "id",
@@ -44,7 +44,10 @@ public class SectionItem {
     }
 
     public static SectionItem[] populateData() {
-        //TODO: mladra: populate data
-        return new SectionItem[]{};
+        return new SectionItem[]{
+                new SectionItem(1, 1, true),
+                new SectionItem(1, 2, true),
+                new SectionItem(1, 3, true)
+        };
     }
 }

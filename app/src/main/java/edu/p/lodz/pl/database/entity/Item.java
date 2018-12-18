@@ -25,6 +25,15 @@ public class Item {
     @ColumnInfo(name = "activity")
     private ActivityEnum activity;
 
+    public Item(int id, String name, double maxTemp, double minTemp, WeatherEnum weather, ActivityEnum activity) {
+        this.id = id;
+        this.name = name;
+        this.maxTemp = maxTemp;
+        this.minTemp = minTemp;
+        this.weather = weather;
+        this.activity = activity;
+    }
+
     public int getId() {
         return id;
     }
@@ -74,7 +83,10 @@ public class Item {
     }
 
     public static Item[] populateData() {
-        //TODO: mladra: populate data
-        return new Item[] {};
+        return new Item[]{
+                new Item(1, "Passport", 0.0D, 0.0D, null, null),
+                new Item(2, "Money", 0.0D, 0.0D, null, null),
+                new Item(3, "ID Card", 0.0D, 0.0D, null, null)
+        };
     }
 }
