@@ -15,7 +15,7 @@ public class ItemsButtonHandler implements ClickHandler {
 
     @Override
     public void onClick() {
-        Intent intent = new Intent(activity.getBaseContext(), ItemsActivity.class);
+        final Intent intent = new Intent(activity.getBaseContext(), ItemsActivity.class);
         activity.startActivity(intent);
     }
 }

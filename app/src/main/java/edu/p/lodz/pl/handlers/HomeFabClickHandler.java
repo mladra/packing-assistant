@@ -7,8 +7,6 @@ import edu.p.lodz.pl.activities.HomeActivity;
 
 public class HomeFabClickHandler implements ClickHandler {
 
-    private static final String TAG = "HomeFabClickHandler";
-
     private HomeActivity activity;
 
     public HomeFabClickHandler(HomeActivity activity) {
@@ -17,7 +15,7 @@ public class HomeFabClickHandler implements ClickHandler {
 
     @Override
     public void onClick() {
-        Intent intent = new Intent(activity.getApplicationContext(), AddPackingListActivity.class);
+        final Intent intent = new Intent(activity.getApplicationContext(), AddPackingListActivity.class);
         activity.startActivity(intent);
     }
 }

@@ -15,7 +15,7 @@ public class AddPackingListClickHandler implements ClickHandler {
 
     @Override
     public void onClick() {
-        Intent intent = new Intent(activity.getApplicationContext(), ChooseActivitiesActivity.class);
+        final Intent intent = new Intent(activity.getApplicationContext(), ChooseActivitiesActivity.class);
         activity.startActivity(intent);
     }
 }
