@@ -5,13 +5,13 @@ import android.content.Intent;
 import edu.p.lodz.pl.activities.AddPackingListActivity;
 import edu.p.lodz.pl.activities.HomeActivity;
 
-public class HomeFabClickListener implements ClickHandler {
+public class HomeFabClickHandler implements ClickHandler {
 
-    private static final String TAG = "HomeFabClickListener";
+    private static final String TAG = "HomeFabClickHandler";
 
     private HomeActivity activity;
 
-    public HomeFabClickListener(HomeActivity activity) {
+    public HomeFabClickHandler(HomeActivity activity) {
         this.activity = activity;
     }
 

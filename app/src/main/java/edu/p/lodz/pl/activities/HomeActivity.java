@@ -6,7 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import edu.p.lodz.pl.R;
 import edu.p.lodz.pl.databinding.ActivityHomeBinding;
-import edu.p.lodz.pl.handlers.HomeFabClickListener;
+import edu.p.lodz.pl.handlers.HomeFabClickHandler;
+import edu.p.lodz.pl.handlers.ItemsButtonHandler;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -18,7 +19,8 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
-        this.binding.setHandler(new HomeFabClickListener(this));
+        this.binding.setHandler(new HomeFabClickHandler(this));
+        this.binding.setItemsHandler(new ItemsButtonHandler(this));
 
         getSupportActionBar().setTitle("Home");
     }

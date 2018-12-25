@@ -4,4 +4,7 @@
     <string name="templates_label">Templates</string>
     <string name="lists_label">Lists</string>
     <string name="destination_label">Destination</string>
+    <string name="next_label">Next</string>
+    <string name="create_from_template_desc">Create packing list from template</string>
+    <string name="date_label">Date</string>
 </resources>
