@@ -1,44 +1,46 @@
-package edu.p.lodz.pl.activities;
+package edu.p.lodz.pl.fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import edu.p.lodz.pl.R;
 import edu.p.lodz.pl.database.entity.ActivityEnum;
-import edu.p.lodz.pl.databinding.ActivityChooseActivitiesBinding;
+import edu.p.lodz.pl.databinding.FragmentChooseActivitiesPackingListBinding;
 import edu.p.lodz.pl.handlers.ChooseActivitiesButtonHandler;
 import edu.p.lodz.pl.model.ActivitySelectedDataModel;
 import edu.p.lodz.pl.view.ViewAdapter;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class ChooseActivitiesActivity extends AppCompatActivity {
+public class ChooseActivitiesPackingListFragment extends Fragment {
 
-    private static final String TAG = "ChooseActivitiesActivit";
+    private FragmentChooseActivitiesPackingListBinding binding;
 
-    private ActivityChooseActivitiesBinding binding;
-
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.binding = DataBindingUtil.setContentView(this, R.layout.activity_choose_activities);
-        initActivitiesRecyclerView();
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        getSupportActionBar().setTitle("Choose activities");
+        this.binding = DataBindingUtil.inflate(inflater, R.layout.fragment_choose_activities_packing_list, container, false);
+        initActivitiesRecyclerView();
+        return this.binding.getRoot();
     }
 
+    @SuppressWarnings("CheckResult")
     private void initActivitiesRecyclerView() {
-        this.binding.activitiesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        final Disposable subscription = Flowable
+        this.binding.activitiesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        Flowable
                 .just(ActivityEnum.values())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -63,4 +65,5 @@ public class ChooseActivitiesActivity extends AppCompatActivity {
         }
         return result;
     }
+
 }

@@ -7,4 +7,7 @@
     <string name="next_label">Next</string>
     <string name="create_from_template_desc">Create packing list from template</string>
     <string name="date_label">Date</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

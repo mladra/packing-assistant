@@ -26,9 +26,6 @@
             android:name=".activities.AddPackingListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.ChooseActivitiesActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activities.ItemsActivity"
             android:screenOrientation="portrait" />
         <activity
