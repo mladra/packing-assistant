@@ -3,7 +3,7 @@
     <data>
         <variable
             name="obj"
-            type="edu.p.lodz.pl.database.entity.PackingList" />
+            type="edu.p.lodz.pl.database.entity.instances.PackingListInstance" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

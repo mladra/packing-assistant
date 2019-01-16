@@ -28,7 +28,7 @@ public class ViewAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
             this.inflater = LayoutInflater.from(parent.getContext());
         }
 
-        ViewDataBinding binding = DataBindingUtil.inflate(this.inflater, layoutId, parent, false);
+        final ViewDataBinding binding = DataBindingUtil.inflate(this.inflater, this.layoutId, parent, false);
         return new ViewHolder(binding);
     }
 

@@ -18,28 +18,33 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activities.HomeActivity">
+        tools:context=".activities.HomeActivity"
+        android:background="@color/text_icons">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/listsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/home_button_width"
+            android:layout_height="@dimen/home_button_height"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
             android:text="@string/lists_label"
+            style="@style/HomeButton"
+            app:cornerRadius="@dimen/round_button_corner_radius"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/itemsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/home_button_width"
+            android:layout_height="@dimen/home_button_height"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/items_label"
+            app:cornerRadius="@dimen/round_button_corner_radius"
+            style="@style/HomeButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/listsButton"
@@ -47,12 +52,14 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/templatesButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/home_button_width"
+            android:layout_height="@dimen/home_button_height"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/templates_label"
+            app:cornerRadius="@dimen/round_button_corner_radius"
+            style="@style/HomeButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/itemsButton" />
@@ -63,8 +70,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
             android:layout_margin="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_add_white_24dp"
@@ -80,7 +87,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_case_primary_24dp" />
+            app:srcCompat="@drawable/packing_list_logo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

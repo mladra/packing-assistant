@@ -53,7 +53,7 @@ public class ChooseActivitiesPackingListFragment extends Fragment {
             public void accept(ActivityEnum[] activities) {
                 final List<ActivitySelectedDataModel> models = createSelectionModel(activities);
                 binding.activitiesRecyclerView.setAdapter(new ViewAdapter<>(models, R.layout.single_activity_layout));
-                binding.setHandler(new ChooseActivitiesButtonHandler(models));
+                binding.setHandler(new ChooseActivitiesButtonHandler(getActivity(), models));
             }
         };
     }

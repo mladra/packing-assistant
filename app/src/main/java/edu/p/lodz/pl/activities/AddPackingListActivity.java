@@ -10,10 +10,13 @@ import androidx.fragment.app.FragmentTransaction;
 import edu.p.lodz.pl.R;
 import edu.p.lodz.pl.databinding.ActivityAddPackingListBinding;
 import edu.p.lodz.pl.fragments.BasicDataPackingListFragment;
+import edu.p.lodz.pl.model.PackingListCreationParameters;
 
 public class AddPackingListActivity extends AppCompatActivity {
 
     private ActivityAddPackingListBinding binding;
+
+    private PackingListCreationParameters creationParameters = new PackingListCreationParameters();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,5 +33,9 @@ public class AddPackingListActivity extends AppCompatActivity {
         fragmentTransaction.commit();
 
         getSupportActionBar().setTitle("Generate packing list");
+    }
+
+    public PackingListCreationParameters getCreationParameters() {
+        return creationParameters;
     }
 }

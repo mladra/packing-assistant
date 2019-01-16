@@ -14,18 +14,38 @@ import edu.p.lodz.pl.database.converters.ActivityEnumTypeConverter;
 import edu.p.lodz.pl.database.converters.DateTypeConverter;
 import edu.p.lodz.pl.database.converters.StatusEnumTypeConverter;
 import edu.p.lodz.pl.database.converters.WeatherEnumTypeConverter;
-import edu.p.lodz.pl.database.dao.ItemDao;
-import edu.p.lodz.pl.database.dao.PackingListDao;
-import edu.p.lodz.pl.database.dao.PackingListSectionDao;
-import edu.p.lodz.pl.database.dao.SectionDao;
-import edu.p.lodz.pl.database.dao.SectionItemDao;
-import edu.p.lodz.pl.database.entity.Item;
-import edu.p.lodz.pl.database.entity.PackingList;
-import edu.p.lodz.pl.database.entity.PackingListSection;
-import edu.p.lodz.pl.database.entity.Section;
-import edu.p.lodz.pl.database.entity.SectionItem;
+import edu.p.lodz.pl.database.dao.definitions.ItemDefinitionsDao;
+import edu.p.lodz.pl.database.dao.instances.ItemInstancesDao;
+import edu.p.lodz.pl.database.dao.definitions.PackingListDefinitionsDao;
+import edu.p.lodz.pl.database.dao.instances.PackingListInstancesDao;
+import edu.p.lodz.pl.database.dao.definitions.PackingListSectionDefinitionsDao;
+import edu.p.lodz.pl.database.dao.definitions.SectionDefinitionsDao;
+import edu.p.lodz.pl.database.dao.instances.PackingListSectionInstancesDao;
+import edu.p.lodz.pl.database.dao.instances.SectionInstancesDao;
+import edu.p.lodz.pl.database.dao.definitions.SectionItemDefinitionsDao;
+import edu.p.lodz.pl.database.dao.instances.SectionItemInstancesDao;
+import edu.p.lodz.pl.database.entity.definitions.PackingListDefinition;
+import edu.p.lodz.pl.database.entity.definitions.SectionDefinition;
+import edu.p.lodz.pl.database.entity.definitions.ItemDefinition;
+import edu.p.lodz.pl.database.entity.instances.ItemInstance;
+import edu.p.lodz.pl.database.entity.instances.PackingListInstance;
+import edu.p.lodz.pl.database.entity.definitions.PackingListSectionDefinition;
+import edu.p.lodz.pl.database.entity.definitions.SectionItemDefinition;
+import edu.p.lodz.pl.database.entity.instances.PackingListSectionInstance;
+import edu.p.lodz.pl.database.entity.instances.SectionInstance;
+import edu.p.lodz.pl.database.entity.instances.SectionItemInstance;
 
-@Database(entities = {Item.class, Section.class, PackingList.class, SectionItem.class, PackingListSection.class}, version = 1)
+@Database(entities = {
+        ItemDefinition.class,
+        SectionDefinition.class,
+        PackingListDefinition.class,
+        SectionItemDefinition.class,
+        PackingListSectionDefinition.class,
+        ItemInstance.class,
+        SectionInstance.class,
+        PackingListInstance.class,
+        SectionItemInstance.class,
+        PackingListSectionInstance.class}, version = 5)
 @TypeConverters({DateTypeConverter.class, ActivityEnumTypeConverter.class, StatusEnumTypeConverter.class, WeatherEnumTypeConverter.class})
 public abstract class PackAssistantDatabase extends RoomDatabase {
 
@@ -33,15 +53,25 @@ public abstract class PackAssistantDatabase extends RoomDatabase {
 
     private static PackAssistantDatabase INSTANCE;
 
-    public abstract ItemDao itemDao();
+    public abstract ItemDefinitionsDao itemDefinitionsDao();
 
-    public abstract SectionDao sectionDao();
+    public abstract SectionDefinitionsDao sectionDefinitionsDao();
 
-    public abstract PackingListDao packingListDao();
+    public abstract PackingListDefinitionsDao packingListDefinitionsDao();
 
-    public abstract SectionItemDao sectionItemDao();
+    public abstract SectionItemDefinitionsDao sectionItemDefinitionsDao();
 
-    public abstract PackingListSectionDao packingListSectionDao();
+    public abstract PackingListSectionDefinitionsDao packingListSectionDefinitionsDao();
+
+    public abstract PackingListInstancesDao packingListInstancesDao();
+
+    public abstract SectionInstancesDao sectionInstancesDao();
+
+    public abstract ItemInstancesDao itemInstancesDao();
+
+    public abstract PackingListSectionInstancesDao packingListSectionInstancesDao();
+
+    public abstract SectionItemInstancesDao sectionItemInstancesDao();
 
     public synchronized static PackAssistantDatabase getInstance(Context context) {
         if (INSTANCE == null) {
@@ -60,15 +90,17 @@ public abstract class PackAssistantDatabase extends RoomDatabase {
                         Executors.newSingleThreadScheduledExecutor().execute(new Runnable() {
                             @Override
                             public void run() {
-                                getInstance(context).itemDao().insertAll(Item.populateData());
-                                getInstance(context).packingListDao().insertAll(PackingList.populateData());
-                                getInstance(context).sectionDao().insertAll(Section.populateData());
-                                getInstance(context).sectionItemDao().insertAll(SectionItem.populateData());
-                                getInstance(context).packingListSectionDao().insertAll(PackingListSection.populateData());
+                                getInstance(context).itemDefinitionsDao().insertAll(ItemDefinition.populateData());
+                                getInstance(context).sectionDefinitionsDao().insertAll(SectionDefinition.populateData());
+                                getInstance(context).packingListDefinitionsDao().insertAll(PackingListDefinition.populateData());
+                                getInstance(context).sectionItemDefinitionsDao().insertAll(SectionItemDefinition.populateData());
+                                getInstance(context).packingListSectionDefinitionsDao().insertAll(PackingListSectionDefinition.populateData());
                             }
                         });
                     }
-                }).build();
+                })
+                .fallbackToDestructiveMigration()
+                .build();
     }
 
 }

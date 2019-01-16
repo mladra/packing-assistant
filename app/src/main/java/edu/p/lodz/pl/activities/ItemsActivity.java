@@ -11,7 +11,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import edu.p.lodz.pl.R;
 import edu.p.lodz.pl.database.PackAssistantDatabase;
-import edu.p.lodz.pl.database.entity.Item;
+import edu.p.lodz.pl.database.entity.definitions.ItemDefinition;
 import edu.p.lodz.pl.databinding.ActivityItemsBinding;
 import edu.p.lodz.pl.view.ViewAdapter;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -38,19 +38,22 @@ public class ItemsActivity extends AppCompatActivity {
         this.binding.itemsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         final Disposable subscription = PackAssistantDatabase
                 .getInstance(this)
-                .itemDao()
+                .itemDefinitionsDao()
                 .getAll()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(createItemsObserver());
     }
 
-    private Consumer<List<Item>> createItemsObserver() {
-        return new Consumer<List<Item>>() {
+    private Consumer<List<ItemDefinition>> createItemsObserver() {
+        return new Consumer<List<ItemDefinition>>() {
             @Override
-            public void accept(List<Item> items) {
-                Log.d(TAG, "Retrieved items from database");
-                binding.itemsRecyclerView.setAdapter(new ViewAdapter<>(items, R.layout.single_item_layout));
+            public void accept(List<ItemDefinition> itemDefinitions) {
+                Log.d(TAG, "Retrieved itemDefinitions from database. Size: " + itemDefinitions.size());
+                for (int i = 0; i < itemDefinitions.size(); i++) {
+                    Log.d(TAG, itemDefinitions.get(i).getName());
+                }
+                binding.itemsRecyclerView.setAdapter(new ViewAdapter<>(itemDefinitions, R.layout.single_item_layout));
             }
         };
     }

@@ -23,6 +23,7 @@ public class BasicDataPackingListFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.binding = DataBindingUtil.inflate(inflater, R.layout.fragment_basic_data_packing_list, container, false);
         this.binding.setHandler(new AddPackingListClickHandler(getActivity()));
+        //TODO: mladra: Add parameters from basic parameters view to the object
         return this.binding.getRoot();
     }
 }
