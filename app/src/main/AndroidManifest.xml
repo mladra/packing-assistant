@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="edu.p.lodz.pl">
+    package="pl.lodz.p.edu">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -10,9 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+
+        <meta-data
+            android:name="weather_api_key"
+            android:value="ed914c9ac74b366d6ed54b61d77cb0f0" />
+
         <activity
-            android:name=".activities.HomeActivity"
+            android:name="pl.lodz.p.edu.activities.HomeActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,16 +28,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.AddPackingListActivity"
+            android:name="pl.lodz.p.edu.activities.AddPackingListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.ItemsActivity"
+            android:name="pl.lodz.p.edu.activities.ItemsActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="pl.lodz.p.edu.activities.PackingListsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.PackingListsActivity"
+            android:name="pl.lodz.p.edu.activities.SectionsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.SectionsActivity"
+            android:name=".activities.AddTemplateActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.TemplatesActivity"
             android:screenOrientation="portrait" />
     </application>
 

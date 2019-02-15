@@ -6,8 +6,31 @@
     <string name="destination_label">Destination</string>
     <string name="next_label">Next</string>
     <string name="create_from_template_desc">Create packing list from template</string>
-    <string name="date_label">Date</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="date_from_label">Date from</string>
+    <string name="date_to_label">Date to</string>
+    <string name="template_name">Template name</string>
+    <string name="none">-</string>
+    <string name="activity_label">Activity</string>
+    <string name="weather_label">Weather</string>
+    <string name="max_temp_label">Max\ntemp</string>
+    <string name="min_temp_label">Min\ntemp</string>
+    <string name="name_label">Name</string>
+    <string name="generate_packing_list_title">Generate packing list</string>
+    <string name="add_template_title">Add template</string>
+    <string name="home_title">Home</string>
+    <string name="items_title">Items</string>
+    <string name="packing_lists_title">Packing lists</string>
+    <string name="max_temp_label_create">Max temp</string>
+    <string name="min_temp_label_create">Min temp</string>
+    <string name="item_with_name_exists_error">Item with name %1$s already exists</string>
+    <string name="item_successfully_created">Item successfully created</string>
+    <string name="required_item_label">Is required</string>
+    <string name="select_section_hint">Select section...</string>
+    <string name="select_weather_hint">Select weather...</string>
+    <string name="templates_title">Templates</string>
+    <string name="add_template_section">Add section</string>
+    <string name="section_name">Section name</string>
+    <string name="add_template_item">Add item</string>
+    <string name="save_template">Save</string>
+    <string name="add">Add</string>
 </resources>

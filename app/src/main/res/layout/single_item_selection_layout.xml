@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="obj"
+            type="pl.lodz.p.edu.view.model.SelectedItemDataModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_margin="4dp">
+
+        <TextView
+            android:id="@+id/single_item_name_tv"
+            android:layout_weight="0.25"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{obj.itemDefinition.name != null ? obj.itemDefinition.name : @string/none}" />
+
+        <TextView
+            android:id="@+id/single_item_min_temp_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.15"
+            android:text="@{obj.itemDefinition.minTemp != null ? obj.itemDefinition.minTemp.toString() : @string/none}" />
+
+        <TextView
+            android:id="@+id/single_item_max_temp_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.15"
+            android:text="@{obj.itemDefinition.maxTemp != null ? obj.itemDefinition.maxTemp.toString() : @string/none}" />
+
+        <TextView
+            android:id="@+id/single_item_weather_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:text="@{obj.itemDefinition.weather != null ? obj.itemDefinition.weather.displayName : @string/none}" />
+
+        <TextView
+            android:id="@+id/single_item_activity_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.20"
+            android:text="@{obj.itemDefinition.activity != null ? obj.itemDefinition.activity.name : @string/none}" />
+
+        <CheckBox
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.05"
+            android:checked="@={obj.selected}"/>
+
+    </LinearLayout>
+</layout>

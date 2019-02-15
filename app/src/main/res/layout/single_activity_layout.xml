@@ -6,7 +6,7 @@
 
         <variable
             name="obj"
-            type="edu.p.lodz.pl.model.ActivitySelectedDataModel" />
+            type="pl.lodz.p.edu.view.model.ActivitySelectedDataModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

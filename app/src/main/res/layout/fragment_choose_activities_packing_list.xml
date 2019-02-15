@@ -6,7 +6,7 @@
 
         <variable
             name="handler"
-            type="edu.p.lodz.pl.handlers.ClickHandler" />
+            type="pl.lodz.p.edu.handlers.ClickHandler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

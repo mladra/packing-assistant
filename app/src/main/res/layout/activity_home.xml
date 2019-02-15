@@ -7,11 +7,19 @@
 
         <variable
             name="handler"
-            type="edu.p.lodz.pl.handlers.ClickHandler" />
+            type="pl.lodz.p.edu.handlers.ClickHandler" />
 
         <variable
             name="itemsHandler"
-            type="edu.p.lodz.pl.handlers.ClickHandler" />
+            type="pl.lodz.p.edu.handlers.ClickHandler" />
+
+        <variable
+            name="packingListsHandler"
+            type="pl.lodz.p.edu.handlers.ClickHandler" />
+
+        <variable
+            name="templatesHandler"
+            type="pl.lodz.p.edu.handlers.ClickHandler" />
 
     </data>
 
@@ -29,11 +37,11 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
             android:text="@string/lists_label"
-            style="@style/HomeButton"
-            app:cornerRadius="@dimen/round_button_corner_radius"
+            style="@style/RoundedButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            android:onClick="@{() -> packingListsHandler.onClick()}"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/itemsButton"
@@ -44,7 +52,7 @@
             android:layout_marginEnd="8dp"
             android:text="@string/items_label"
             app:cornerRadius="@dimen/round_button_corner_radius"
-            style="@style/HomeButton"
+            style="@style/RoundedButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/listsButton"
@@ -58,11 +66,11 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/templates_label"
-            app:cornerRadius="@dimen/round_button_corner_radius"
-            style="@style/HomeButton"
+            style="@style/RoundedButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemsButton" />
+            app:layout_constraintTop_toBottomOf="@+id/itemsButton"
+            android:onClick="@{(v) -> templatesHandler.onClick()}"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floating_action_button"
@@ -79,8 +87,8 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="198dp"
+            android:layout_height="320dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"

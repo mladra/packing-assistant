@@ -6,10 +6,10 @@
     <data>
         <variable
             name="definition"
-            type="edu.p.lodz.pl.database.entity.definitions.SectionDefinition" />
+            type="pl.lodz.p.edu.database.entity.definitions.SectionDefinition" />
         <variable
             name="instance"
-            type="edu.p.lodz.pl.database.entity.instances.SectionInstance" />
+            type="pl.lodz.p.edu.database.entity.instances.SectionInstance" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

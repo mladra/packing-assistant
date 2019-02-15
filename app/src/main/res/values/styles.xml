@@ -8,9 +8,10 @@
         <item name="colorAccent">@color/accent</item>
     </style>
 
-    <style name="HomeButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+    <style name="RoundedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:textColor">@color/primary</item>
         <item name="rippleColor">@color/primary_light</item>
+        <item name="cornerRadius">@dimen/round_button_corner_radius</item>
     </style>
 
     <style name="Divider">
