@@ -1,6 +1,5 @@
 package pl.lodz.p.edu.handlers;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -73,7 +72,7 @@ public class AddPackingListClickHandler implements ClickHandler {
     }
 
     private void createListFromChosenTemplate(PackingListCreationParameters params) throws ExecutionException, InterruptedException {
-        final CreateListFromTemplateTask task = new CreateListFromTemplateTask(activity);
+        final CreateListFromTemplateTask task = new CreateListFromTemplateTask(activity, parent);
         long packingListInstanceId = task.execute(params.getTemplate()).get();
 
         final FragmentManager manager = activity.getSupportFragmentManager();
@@ -117,9 +116,11 @@ public class AddPackingListClickHandler implements ClickHandler {
     private static class CreateListFromTemplateTask extends AsyncTask<PackingListDefinition, Void, Long> {
 
         private FragmentActivity activity;
+        private AddPackingListActivity parent;
 
-        public CreateListFromTemplateTask(FragmentActivity activity) {
+        public CreateListFromTemplateTask(FragmentActivity activity, AddPackingListActivity parent) {
             this.activity = activity;
+            this.parent = parent;
         }
 
         @Override
@@ -127,7 +128,7 @@ public class AddPackingListClickHandler implements ClickHandler {
             if (packingListDefinitions != null && packingListDefinitions.length > 0) {
                 final PackAssistantDatabase db = PackAssistantDatabase.getInstance(activity.getApplicationContext());
                 final PackingListDefinition packingListDefinition = packingListDefinitions[0];
-                final PackingListInstance packingListInstance = new PackingListInstance(packingListDefinition.getId(), new Date(), StatusEnum.OPEN);
+                final PackingListInstance packingListInstance = new PackingListInstance(packingListDefinition.getId(), new Date(), StatusEnum.OPEN, parent.getCreationParameters().getCityName());
                 final long packingListInstanceId = db.packingListInstancesDao().insertSingle(packingListInstance);
                 final List<SectionDefinition> sections = db.sectionDefinitionsDao().getByPackingListId(packingListDefinition.getId());
                 if (sections != null && !sections.isEmpty()) {

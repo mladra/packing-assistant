@@ -15,7 +15,7 @@ public interface ItemDefinitionsDao {
     @Query("SELECT * FROM items_definitions")
     Flowable<List<ItemDefinition>> getAll();
 
-    @Query("SELECT i.id, i.name, i.max_temp, i.min_temp, i.weather, i.activity " +
+    @Query("SELECT i.id, i.name, i.max_temp, i.min_temp, i.weather, i.activity, i.weight " +
             "FROM items_definitions i " +
             "LEFT JOIN section_item_definitions si ON si.item_id = i.id " +
             "WHERE si.section_id = :id")

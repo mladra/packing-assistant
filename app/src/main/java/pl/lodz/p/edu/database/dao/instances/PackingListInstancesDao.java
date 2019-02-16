@@ -16,7 +16,7 @@ public interface PackingListInstancesDao {
     @Insert
     long insertSingle(PackingListInstance packingList);
 
-    @Query("SELECT ins.id, ins.created_on, ins.packing_list_definition_id, ins.status " +
+    @Query("SELECT ins.id, ins.created_on, ins.packing_list_definition_id, ins.status, ins.destination " +
             "FROM packing_list_instances ins " +
             "WHERE ins.id = :packingListInstanceId")
     PackingListInstance getById(long packingListInstanceId);

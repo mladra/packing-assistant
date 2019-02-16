@@ -1,6 +1,9 @@
 package pl.lodz.p.edu.view.holders;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+
+import java.text.SimpleDateFormat;
 
 import androidx.recyclerview.widget.RecyclerView;
 import pl.lodz.p.edu.activities.AddPackingListActivity;
@@ -19,6 +22,7 @@ public class PackingListViewHolder extends RecyclerView.ViewHolder {
         this.binding = binding;
     }
 
+    @SuppressLint("SimpleDateFormat")
     public void bind(final PackingListInstance instance) {
         this.binding.setObj(instance);
         this.binding.setHandler(new ClickHandler() {
@@ -29,6 +33,7 @@ public class PackingListViewHolder extends RecyclerView.ViewHolder {
                 binding.getRoot().getContext().startActivity(intent);
             }
         });
+        this.binding.setDateFormatter(new SimpleDateFormat("dd-MM-yyyy HH:mm"));
     }
 
     public SinglePackingListLayoutBinding getBinding() {

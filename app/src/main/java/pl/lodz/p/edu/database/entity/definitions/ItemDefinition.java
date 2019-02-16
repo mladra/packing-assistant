@@ -37,6 +37,7 @@ public class ItemDefinition extends BaseEntity implements Serializable {
     @Ignore
     public ItemDefinition(String name) {
         this.name = name;
+        this.weight = 1.0D;
     }
 
     @Ignore

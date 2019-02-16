@@ -63,7 +63,7 @@ public class ChooseActivitiesButtonHandler implements ClickHandler {
     private long createAndSaveDataInDatabase() {
         try {
             final PackAssistantDatabase db = PackAssistantDatabase.getInstance(this.activity);
-            final CreateAndSaveDataInDatabaseTask task = new CreateAndSaveDataInDatabaseTask(db);
+            final CreateAndSaveDataInDatabaseTask task = new CreateAndSaveDataInDatabaseTask(db, params);
             return task.execute(getModelNames()).get();
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -113,9 +113,11 @@ public class ChooseActivitiesButtonHandler implements ClickHandler {
     private static class CreateAndSaveDataInDatabaseTask extends AsyncTask<String, Void, Long> {
 
         private final PackAssistantDatabase db;
+        private final PackingListCreationParameters params;
 
-        public CreateAndSaveDataInDatabaseTask(PackAssistantDatabase db) {
+        public CreateAndSaveDataInDatabaseTask(PackAssistantDatabase db, PackingListCreationParameters params) {
             this.db = db;
+            this.params = params;
         }
 
         @Override
@@ -134,7 +136,7 @@ public class ChooseActivitiesButtonHandler implements ClickHandler {
             final PackingListDefinition packingListDefinition = new PackingListDefinition(Utils.random(10), false);
             long packingListDefinitionId = db.packingListDefinitionsDao().insertSingle(packingListDefinition);
 
-            final PackingListInstance packingListInstance = new PackingListInstance(packingListDefinitionId, new Date(), StatusEnum.OPEN);
+            final PackingListInstance packingListInstance = new PackingListInstance(packingListDefinitionId, new Date(), StatusEnum.OPEN, params.getCityName());
             final long packingListInstanceId = db.packingListInstancesDao().insertSingle(packingListInstance);
 
             for (SectionDefinition sectionDefinition : sections) {

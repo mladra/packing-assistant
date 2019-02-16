@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import pl.lodz.p.edu.R;
 import pl.lodz.p.edu.database.entity.StatusEnum;
 import pl.lodz.p.edu.databinding.SingleSectionLayoutBinding;
+import pl.lodz.p.edu.fragments.CreatedPackingListFragment;
 import pl.lodz.p.edu.view.holders.SectionViewHolder;
 import pl.lodz.p.edu.view.model.Section;
 
@@ -21,9 +22,9 @@ public class SectionViewAdapter extends RecyclerView.Adapter<SectionViewHolder> 
     private StatusEnum packingListStatus;
     private LayoutInflater inflater;
     private int layoutId;
-    private Context ctx;
+    private CreatedPackingListFragment ctx;
 
-    public SectionViewAdapter(List<Section> objects, StatusEnum packingListStatus, Context ctx) {
+    public SectionViewAdapter(List<Section> objects, StatusEnum packingListStatus, CreatedPackingListFragment ctx) {
         this.objects = objects;
         this.layoutId = R.layout.single_section_layout;
         this.ctx = ctx;

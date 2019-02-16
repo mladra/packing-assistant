@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import pl.lodz.p.edu.database.entity.StatusEnum;
 import pl.lodz.p.edu.databinding.SingleItemSelectedLayoutBinding;
+import pl.lodz.p.edu.fragments.CreatedPackingListFragment;
 import pl.lodz.p.edu.view.holders.ItemViewHolder;
 import pl.lodz.p.edu.view.model.Item;
 
@@ -19,11 +20,13 @@ public class ItemViewAdapter extends RecyclerView.Adapter<ItemViewHolder> {
     private StatusEnum status;
     private LayoutInflater inflater;
     private int layoutId;
+    private CreatedPackingListFragment ctx;
 
-    public ItemViewAdapter(List<Item> items, StatusEnum status, int layoutId) {
+    public ItemViewAdapter(List<Item> items, StatusEnum status, int layoutId, CreatedPackingListFragment ctx) {
         this.items = items;
         this.status = status;
         this.layoutId = layoutId;
+        this.ctx = ctx;
     }
 
     @NonNull
@@ -40,7 +43,7 @@ public class ItemViewAdapter extends RecyclerView.Adapter<ItemViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         final Item item = items.get(position);
-        holder.bind(item, status);
+        holder.bind(item, status, ctx);
     }
 
     @Override

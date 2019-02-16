@@ -30,7 +30,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@={newItem.name}"/>
+                android:text="@={newItem.name}"
+                android:nextFocusForward="@id/minTempInput"
+                android:singleLine="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -49,7 +51,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:text="@={DoubleConverter.toString(newItem.minTemp)}"/>
+                android:text="@={DoubleConverter.toString(newItem.minTemp)}"
+                android:singleLine="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -67,7 +70,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:text="@={DoubleConverter.toString(newItem.maxTemp)}"/>
+                android:text="@={DoubleConverter.toString(newItem.maxTemp)}"
+                android:singleLine="true"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/weightInput"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:hint="@string/weight_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/minTempInput">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:text="@={DoubleConverter.toString(newItem.weight)}"
+                android:singleLine="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,8 +107,9 @@
             android:hint="@string/select_weather_hint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/minTempInput"
-            android:text="@={WeatherConverter.toString(newItem.weather)}"/>
+            app:layout_constraintTop_toBottomOf="@+id/weightInput"
+            android:text="@={WeatherConverter.toString(newItem.weather)}"
+            android:singleLine="true"/>
 
         <AutoCompleteTextView
             android:id="@+id/activity_autocomplete"
@@ -95,7 +122,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/weather_autocomplete"
-            android:text="@={ActivityConverter.toString(newItem.activity)}"/>
+            android:text="@={ActivityConverter.toString(newItem.activity)}"
+            android:singleLine="true"/>
 
         <CheckBox
             android:layout_width="wrap_content"

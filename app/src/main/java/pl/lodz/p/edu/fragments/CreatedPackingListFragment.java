@@ -1,11 +1,13 @@
 package pl.lodz.p.edu.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -42,6 +44,7 @@ public class CreatedPackingListFragment extends Fragment {
         this.packingListInstanceId = packingListInstanceId;
     }
 
+    @SuppressLint("SimpleDateFormat")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -53,10 +56,13 @@ public class CreatedPackingListFragment extends Fragment {
 
             this.binding.setVariable(BR.instance, this.packingList.getInstance());
             this.binding.sectionsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            this.binding.sectionsRecyclerView.setAdapter(new SectionViewAdapter(this.packingList.getSections(), packingList.getInstance().getStatus(), getContext()));
+            this.binding.sectionsRecyclerView.setAdapter(new SectionViewAdapter(this.packingList.getSections(), packingList.getInstance().getStatus(), this));
 
             this.binding.setSaveHandler(new SavePackingListHandler(this));
             this.binding.setCloseHandler(new ClosePackingListHandler(this));
+            this.binding.setMaxWeight(calculateWeight(true));
+            this.binding.setCurrentWeight(calculateWeight(false));
+            this.binding.setDateFormatter(new SimpleDateFormat("dd-MM-yyyy HH:mm"));
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -65,8 +71,35 @@ public class CreatedPackingListFragment extends Fragment {
         return this.binding.getRoot();
     }
 
+    private Double calculateWeight(boolean max) {
+        Double sum = 0.0D;
+        if (packingList != null) {
+            final List<Section> sections = this.packingList.getSections();
+            if (sections != null && !sections.isEmpty()) {
+                for (Section section : sections) {
+                    final List<Item> items = section.getItems();
+                    if (items != null && !items.isEmpty()) {
+                        for (Item item : items) {
+                            if (max) {
+                                sum += item.getDefinition().getWeight();
+                            } else if (item.getInstance().isSelected()) {
+                                sum += item.getDefinition().getWeight();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return sum;
+    }
+
     public PackingList getPackingList() {
         return packingList;
+    }
+
+    public void refreshWeight() {
+        final Double weight = calculateWeight(false);
+        this.binding.setCurrentWeight(weight);
     }
 
     private static class RetrievePackingListTask extends AsyncTask<Long, Void, List<PackingList>> {

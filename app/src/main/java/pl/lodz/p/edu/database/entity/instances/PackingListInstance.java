@@ -19,10 +19,14 @@ public class PackingListInstance extends BaseEntity {
     @ColumnInfo(name = "status")
     private StatusEnum status;
 
-    public PackingListInstance(long packingListDefinitionId, Date creationDate, StatusEnum status) {
+    @ColumnInfo(name = "destination")
+    private String destination;
+
+    public PackingListInstance(long packingListDefinitionId, Date creationDate, StatusEnum status, String destination) {
         this.packingListDefinitionId = packingListDefinitionId;
         this.creationDate = creationDate;
         this.status = status;
+        this.destination = destination;
     }
 
     public long getPackingListDefinitionId() {
@@ -47,5 +51,13 @@ public class PackingListInstance extends BaseEntity {
 
     public void setStatus(StatusEnum status) {
         this.status = status;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 }
