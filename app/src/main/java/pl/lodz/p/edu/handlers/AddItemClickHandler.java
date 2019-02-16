@@ -118,10 +118,13 @@ public class AddItemClickHandler implements ClickHandler {
                 }
 
                 long[] ids = db.itemDefinitionsDao().insertAll(ItemDefinition.of(itemDataModel));
-                List<SectionDefinition> sectionDefinition = db.sectionDefinitionsDao().getByName(itemDataModel.getActivity().getName());
-                db.sectionItemDefinitionsDao().insertAll(new SectionItemDefinition(sectionDefinition.iterator().next().getId(), ids[0], itemDataModel.isRequired()));
                 for (long id : ids) {
                     createdItemIds.add(id);
+                }
+
+                if (itemDataModel.getActivity() != null) {
+                    List<SectionDefinition> sectionDefinition = db.sectionDefinitionsDao().getByName(itemDataModel.getActivity().getName());
+                    db.sectionItemDefinitionsDao().insertAll(new SectionItemDefinition(sectionDefinition.iterator().next().getId(), ids[0], itemDataModel.isRequired()));
                 }
             }
             return createdItemIds;
