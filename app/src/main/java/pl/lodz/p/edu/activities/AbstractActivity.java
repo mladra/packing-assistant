@@ -19,4 +19,8 @@ public abstract class AbstractActivity<T extends ViewDataBinding> extends AppCom
             supportActionBar.setTitle(titleId);
         }
     }
+
+    public T getBinding() {
+        return binding;
+    }
 }

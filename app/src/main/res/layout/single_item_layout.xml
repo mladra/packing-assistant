@@ -17,37 +17,22 @@
 
         <TextView
             android:id="@+id/single_item_name_tv"
-            android:layout_weight="0.25"
+            android:layout_weight="0.30"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{obj.name != null ? obj.name : @string/none}" />
 
         <TextView
-            android:id="@+id/single_item_min_temp_tv"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.15"
-            android:text="@{obj.minTemp != null ? obj.minTemp.toString() : @string/none}" />
-
-        <TextView
-            android:id="@+id/single_item_max_temp_tv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.15"
-            android:text="@{obj.maxTemp != null ? obj.maxTemp.toString() : @string/none}" />
-
-        <TextView
-            android:id="@+id/single_item_weather_tv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2"
-            android:text="@{obj.weather != null ? obj.weather.displayName : @string/none}" />
+            android:layout_weight="0.30"
+            android:layout_height="match_parent"
+            android:text="@{obj.weight != null ? obj.weight.toString() : @string/none}"/>
 
         <TextView
             android:id="@+id/single_item_activity_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.25"
+            android:layout_weight="0.40"
             android:text="@{obj.activity != null ? obj.activity.name : @string/none}" />
 
     </LinearLayout>

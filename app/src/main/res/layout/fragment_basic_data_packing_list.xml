@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="handler"
             type="pl.lodz.p.edu.handlers.ClickHandler" />
@@ -12,6 +14,14 @@
         <variable
             name="params"
             type="pl.lodz.p.edu.view.model.PackingListCreationParameters" />
+
+        <variable
+            name="checkedListener"
+            type="android.widget.CompoundButton.OnCheckedChangeListener" />
+
+        <variable
+            name="converter"
+            type="pl.lodz.p.edu.converters.PackingListDefinitionConverter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -83,11 +93,26 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:onCheckedChanged="@{(btn, chck) -> checkedListener.onCheckedChanged(btn, chck)}"
             android:text="@string/create_from_template_desc"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dateRangeText4Input" />
+
+        <AutoCompleteTextView
+            android:id="@+id/template_autocomplete_tv"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:visibility="invisible"
+            android:hint="@string/choose_template"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox"
+            android:text="@={converter.toString(params.template)}"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/nextButton"
@@ -95,13 +120,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:onClick="@{(v) -> handler.onClick()}"
             android:text="@string/next_label"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -42,9 +42,4 @@ public class PackingListSectionDefinition {
     public boolean isRequired() {
         return required;
     }
-
-    public static PackingListSectionDefinition[] populateData() {
-        //TODO: mladra: populate data
-        return new PackingListSectionDefinition[]{};
-    }
 }

@@ -11,6 +11,7 @@ import pl.lodz.p.edu.databinding.ActivityPackingListsBinding;
 import pl.lodz.p.edu.R;
 import pl.lodz.p.edu.database.PackAssistantDatabase;
 import pl.lodz.p.edu.database.entity.instances.PackingListInstance;
+import pl.lodz.p.edu.view.adapters.PackingListViewAdapter;
 import pl.lodz.p.edu.view.adapters.ViewAdapter;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -45,7 +46,7 @@ public class PackingListsActivity extends AbstractActivity<ActivityPackingListsB
             @Override
             public void accept(List<PackingListInstance> data) {
                 Log.d(TAG, "Retrieved packingListInstances from database. Size: " + data.size());
-                binding.packingListsRecyclerView.setAdapter(new ViewAdapter<>(data, R.layout.single_packing_list_layout));
+                binding.packingListsRecyclerView.setAdapter(new PackingListViewAdapter(data, R.layout.single_packing_list_layout));
             }
         };
     }

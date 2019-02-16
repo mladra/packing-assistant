@@ -32,7 +32,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="pl.lodz.p.edu.activities.ItemsActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="portrait" />
         <activity
             android:name="pl.lodz.p.edu.activities.PackingListsActivity"
             android:screenOrientation="portrait" />

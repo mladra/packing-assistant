@@ -45,7 +45,7 @@ import pl.lodz.p.edu.database.entity.instances.SectionItemInstance;
         SectionInstance.class,
         PackingListInstance.class,
         SectionItemInstance.class,
-        PackingListSectionInstance.class}, version = 8, exportSchema = false)
+        PackingListSectionInstance.class}, version = 9, exportSchema = false)
 @TypeConverters({DateTypeConverter.class, ActivityEnumTypeConverter.class, StatusEnumTypeConverter.class, WeatherEnumTypeConverter.class})
 public abstract class PackAssistantDatabase extends RoomDatabase {
 
@@ -94,7 +94,6 @@ public abstract class PackAssistantDatabase extends RoomDatabase {
                                 getInstance(context).sectionDefinitionsDao().insertAll(SectionDefinition.populateData());
                                 getInstance(context).packingListDefinitionsDao().insertAll(PackingListDefinition.populateData());
                                 getInstance(context).sectionItemDefinitionsDao().insertAll(SectionItemDefinition.populateData());
-                                getInstance(context).packingListSectionDefinitionsDao().insertAll(PackingListSectionDefinition.populateData());
                             }
                         });
                     }

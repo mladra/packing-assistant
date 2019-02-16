@@ -2,6 +2,7 @@ package pl.lodz.p.edu.database.entity.definitions;
 
 import java.io.Serializable;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -20,6 +21,9 @@ public class ItemDefinition extends BaseEntity implements Serializable {
 
     @ColumnInfo(name = "min_temp")
     private Double minTemp;
+
+    @ColumnInfo(name = "weight")
+    private Double weight;
 
     @ColumnInfo(name = "weather")
     private WeatherEnum weather;
@@ -54,9 +58,10 @@ public class ItemDefinition extends BaseEntity implements Serializable {
         this.weather = weather;
     }
 
-    public ItemDefinition(String name, Double maxTemp, Double minTemp, WeatherEnum weather, ActivityEnum activity) {
+    public ItemDefinition(String name, Double maxTemp, Double minTemp, Double weight, WeatherEnum weather, ActivityEnum activity) {
         this(name, activity, minTemp, maxTemp);
         this.weather = weather;
+        this.weight = weight;
     }
 
     public String getName() {
@@ -81,6 +86,14 @@ public class ItemDefinition extends BaseEntity implements Serializable {
 
     public void setMinTemp(double minTemp) {
         this.minTemp = minTemp;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
     }
 
     public WeatherEnum getWeather() {
@@ -117,6 +130,7 @@ public class ItemDefinition extends BaseEntity implements Serializable {
                 model.getName(),
                 model.getMaxTemp(),
                 model.getMinTemp(),
+                model.getWeight(),
                 model.getWeather(),
                 model.getActivity()
         );

@@ -3,8 +3,10 @@ package pl.lodz.p.edu.view.model;
 import java.util.Date;
 import java.util.List;
 
+import androidx.databinding.ObservableField;
 import pl.lodz.p.edu.database.entity.ActivityEnum;
 import pl.lodz.p.edu.database.entity.WeatherEnum;
+import pl.lodz.p.edu.database.entity.definitions.PackingListDefinition;
 
 public class PackingListCreationParameters {
 
@@ -14,6 +16,8 @@ public class PackingListCreationParameters {
     private WeatherEnum weather;
     private List<ActivityEnum> activities;
     private Date[] rangeDate = new Date[2];
+    private boolean fromTemplate;
+    private PackingListDefinition template;
 
     public String getCityName() {
         return cityName;
@@ -61,5 +65,21 @@ public class PackingListCreationParameters {
 
     public void setRangeDate(Date[] rangeDate) {
         this.rangeDate = rangeDate;
+    }
+
+    public PackingListDefinition getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(PackingListDefinition template) {
+        this.template = template;
+    }
+
+    public boolean isFromTemplate() {
+        return fromTemplate;
+    }
+
+    public void setFromTemplate(boolean fromTemplate) {
+        this.fromTemplate = fromTemplate;
     }
 }

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import pl.lodz.p.edu.BR;
 import pl.lodz.p.edu.R;
+import pl.lodz.p.edu.database.entity.StatusEnum;
 import pl.lodz.p.edu.databinding.SingleSectionLayoutBinding;
 import pl.lodz.p.edu.view.adapters.ItemViewAdapter;
 import pl.lodz.p.edu.view.model.Section;
@@ -20,11 +21,11 @@ public class SectionViewHolder extends RecyclerView.ViewHolder {
         this.binding = binding;
     }
 
-    public void bind(Section section, Context ctx) {
+    public void bind(Section section, StatusEnum status, Context ctx) {
         this.binding.setVariable(BR.instance, section.getInstance());
         this.binding.setVariable(BR.definition, section.getDefinition());
         this.binding.itemsRecyclerView.setLayoutManager(new LinearLayoutManager(ctx));
-        this.binding.itemsRecyclerView.setAdapter(new ItemViewAdapter(section.getItems(), R.layout.single_item_selected_layout));
+        this.binding.itemsRecyclerView.setAdapter(new ItemViewAdapter(section.getItems(), status, R.layout.single_item_selected_layout));
     }
 
     public ViewDataBinding getBinding() {

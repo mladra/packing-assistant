@@ -8,6 +8,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
+import pl.lodz.p.edu.database.entity.StatusEnum;
 import pl.lodz.p.edu.databinding.SingleItemSelectedLayoutBinding;
 import pl.lodz.p.edu.view.holders.ItemViewHolder;
 import pl.lodz.p.edu.view.model.Item;
@@ -15,11 +16,13 @@ import pl.lodz.p.edu.view.model.Item;
 public class ItemViewAdapter extends RecyclerView.Adapter<ItemViewHolder> {
 
     private List<Item> items;
+    private StatusEnum status;
     private LayoutInflater inflater;
     private int layoutId;
 
-    public ItemViewAdapter(List<Item> items, int layoutId) {
+    public ItemViewAdapter(List<Item> items, StatusEnum status, int layoutId) {
         this.items = items;
+        this.status = status;
         this.layoutId = layoutId;
     }
 
@@ -37,7 +40,7 @@ public class ItemViewAdapter extends RecyclerView.Adapter<ItemViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         final Item item = items.get(position);
-        holder.bind(item);
+        holder.bind(item, status);
     }
 
     @Override

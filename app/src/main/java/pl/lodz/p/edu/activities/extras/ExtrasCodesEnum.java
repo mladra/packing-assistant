@@ -9,6 +9,7 @@ public enum ExtrasCodesEnum {
     CREATE_FROM_TEMPLATE,
     SELECTION_MODE,
     ITEMS,
+    REMOVAL_MODE,
     SECTION_ID
 
 }

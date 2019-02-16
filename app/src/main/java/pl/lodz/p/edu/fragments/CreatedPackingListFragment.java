@@ -25,6 +25,8 @@ import pl.lodz.p.edu.database.entity.instances.ItemInstance;
 import pl.lodz.p.edu.database.entity.instances.PackingListInstance;
 import pl.lodz.p.edu.database.entity.instances.SectionInstance;
 import pl.lodz.p.edu.databinding.FragmentShowPackingListBinding;
+import pl.lodz.p.edu.handlers.ClosePackingListHandler;
+import pl.lodz.p.edu.handlers.SavePackingListHandler;
 import pl.lodz.p.edu.view.model.Item;
 import pl.lodz.p.edu.view.model.PackingList;
 import pl.lodz.p.edu.view.model.Section;
@@ -51,13 +53,20 @@ public class CreatedPackingListFragment extends Fragment {
 
             this.binding.setVariable(BR.instance, this.packingList.getInstance());
             this.binding.sectionsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            this.binding.sectionsRecyclerView.setAdapter(new SectionViewAdapter(this.packingList.getSections(), getContext()));
+            this.binding.sectionsRecyclerView.setAdapter(new SectionViewAdapter(this.packingList.getSections(), packingList.getInstance().getStatus(), getContext()));
+
+            this.binding.setSaveHandler(new SavePackingListHandler(this));
+            this.binding.setCloseHandler(new ClosePackingListHandler(this));
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         return this.binding.getRoot();
+    }
+
+    public PackingList getPackingList() {
+        return packingList;
     }
 
     private static class RetrievePackingListTask extends AsyncTask<Long, Void, List<PackingList>> {

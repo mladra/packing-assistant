@@ -35,7 +35,6 @@ import pl.lodz.p.edu.utils.Utils;
 public class ChooseActivitiesButtonHandler implements ClickHandler {
 
     private static final Long INVALID_ID = -1L;
-    private static final String TAG = "ChooseActivitiesBtnHndl";
     private final List<ActivitySelectedDataModel> models;
     private final FragmentActivity activity;
     private PackingListCreationParameters params;
@@ -97,8 +96,7 @@ public class ChooseActivitiesButtonHandler implements ClickHandler {
         final CreatedPackingListFragment fragment = new CreatedPackingListFragment();
         fragment.setPackingListInstanceId(instanceId);
 
-        transaction.replace(R.id.fragment_container, fragment);
-        transaction.addToBackStack(null);
+        transaction.replace(R.id.fragment_container, fragment, "CREATED_LIST_FRAGMENT");
         transaction.commit();
     }
 

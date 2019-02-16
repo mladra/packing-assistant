@@ -36,4 +36,9 @@ public class PackingListDefinition extends BaseEntity {
     public static PackingListDefinition[] populateData() {
         return new PackingListDefinition[]{};
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

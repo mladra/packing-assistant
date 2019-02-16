@@ -9,6 +9,7 @@ public class NewItemDataModel {
     private String name;
     private Double minTemp;
     private Double maxTemp;
+    private Double weight;
     private WeatherEnum weather;
     private ActivityEnum activity;
     private boolean required;
@@ -35,6 +36,14 @@ public class NewItemDataModel {
 
     public void setMaxTemp(Double maxTemp) {
         this.maxTemp = maxTemp;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
     }
 
     public WeatherEnum getWeather() {

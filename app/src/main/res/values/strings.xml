@@ -25,12 +25,20 @@
     <string name="item_with_name_exists_error">Item with name %1$s already exists</string>
     <string name="item_successfully_created">Item successfully created</string>
     <string name="required_item_label">Is required</string>
-    <string name="select_section_hint">Select section...</string>
-    <string name="select_weather_hint">Select weather...</string>
+    <string name="select_section_hint">Select section…</string>
+    <string name="select_weather_hint">Select weather…</string>
     <string name="templates_title">Templates</string>
     <string name="add_template_section">Add section</string>
     <string name="section_name">Section name</string>
     <string name="add_template_item">Add item</string>
     <string name="save_template">Save</string>
     <string name="add">Add</string>
+    <string name="remove_title">Remove</string>
+    <string name="weight_label">Weight [kg]</string>
+    <string name="created_on_label">Created on:</string>
+    <string name="status_label">Status:</string>
+    <string name="save">Save</string>
+    <string name="close">CLOSE</string>
+    <string name="choose_template">Choose template…</string>
+    <string name="choose_template_error">You have to choose template before going further</string>
 </resources>

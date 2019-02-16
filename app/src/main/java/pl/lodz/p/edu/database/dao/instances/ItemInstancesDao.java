@@ -5,6 +5,7 @@ import java.util.List;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 import pl.lodz.p.edu.database.entity.instances.ItemInstance;
 
 @Dao
@@ -19,4 +20,6 @@ public interface ItemInstancesDao {
     @Insert
     long insertSingle(ItemInstance itemInstance);
 
+    @Update
+    void update(ItemInstance... itemInstances);
 }

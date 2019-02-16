@@ -1,7 +1,9 @@
 package pl.lodz.p.edu.activities;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,7 +17,12 @@ import pl.lodz.p.edu.R;
 import pl.lodz.p.edu.activities.extras.ExtrasCodesEnum;
 import pl.lodz.p.edu.activities.extras.RequestCodesEnum;
 import pl.lodz.p.edu.activities.extras.ResultCodesEnum;
+import pl.lodz.p.edu.database.PackAssistantDatabase;
 import pl.lodz.p.edu.database.entity.definitions.ItemDefinition;
+import pl.lodz.p.edu.database.entity.definitions.PackingListDefinition;
+import pl.lodz.p.edu.database.entity.definitions.PackingListSectionDefinition;
+import pl.lodz.p.edu.database.entity.definitions.SectionDefinition;
+import pl.lodz.p.edu.database.entity.definitions.SectionItemDefinition;
 import pl.lodz.p.edu.databinding.ActivityAddTemplateBinding;
 import pl.lodz.p.edu.handlers.ClickHandler;
 import pl.lodz.p.edu.view.adapters.TemplateSectionViewAdapter;
@@ -63,7 +70,9 @@ public class AddTemplateActivity extends AbstractActivity<ActivityAddTemplateBin
     }
 
     private void saveTemplate() {
-        //TODO: mladra: Save packing list template
+        final SaveTemplateAsyncTask task = new SaveTemplateAsyncTask(this);
+        task.execute(template);
+        finish();
     }
 
     @Override
@@ -115,5 +124,48 @@ public class AddTemplateActivity extends AbstractActivity<ActivityAddTemplateBin
             }
         }
         return result;
+    }
+
+    private static class SaveTemplateAsyncTask extends AsyncTask<Template, Void, Void> {
+
+        private static final String TAG = "SaveTemplateTask";
+
+        private AddTemplateActivity activity;
+
+        public SaveTemplateAsyncTask(AddTemplateActivity activity) {
+            this.activity = activity;
+        }
+
+        @Override
+        protected Void doInBackground(Template... templates) {
+            Log.d(TAG, "doInBackground: Saving template...");
+            if (templates != null && templates.length > 0) {
+                final PackAssistantDatabase db = PackAssistantDatabase.getInstance(activity);
+                for (final Template template : templates) {
+                    final PackingListDefinition packingListDefinition = new PackingListDefinition(template.getName(), true);
+                    long packingListDefinitionId = db.packingListDefinitionsDao().insertSingle(packingListDefinition);
+
+                    if (template.getSections() != null && !template.getSections().isEmpty()) {
+                        for (final TemplateSection section : template.getSections()) {
+                            final SectionDefinition sectionDefinition = new SectionDefinition(section.getName(), false);
+                            long sectionId = db.sectionDefinitionsDao().insertSingle(sectionDefinition);
+
+                            final PackingListSectionDefinition packingListSectionDefinition = new PackingListSectionDefinition(sectionId, packingListDefinitionId, false);
+                            db.packingListSectionDefinitionsDao().insertAll(packingListSectionDefinition);
+
+                            if (section.getItems() != null && !section.getItems().isEmpty()) {
+                                for (final TemplateSectionItem item : section.getItems()) {
+                                    final ItemDefinition itemDefinition = db.itemDefinitionsDao().getByName(item.getName());
+                                    final SectionItemDefinition sectionItemDefinition = new SectionItemDefinition(sectionId, itemDefinition.getId(), false);
+                                    db.sectionItemDefinitionsDao().insertAll(sectionItemDefinition);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Log.d(TAG, "doInBackground: Template successfully saved.");
+            return null;
+        }
     }
 }

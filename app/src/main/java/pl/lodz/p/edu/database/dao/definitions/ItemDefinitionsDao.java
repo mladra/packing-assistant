@@ -3,6 +3,7 @@ package pl.lodz.p.edu.database.dao.definitions;
 import java.util.List;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import pl.lodz.p.edu.database.entity.definitions.ItemDefinition;
@@ -30,5 +31,8 @@ public interface ItemDefinitionsDao {
             "FROM items_definitions i " +
             "WHERE i.name = :name")
     ItemDefinition getByName(String name);
+
+    @Delete
+    void delete(ItemDefinition... itemDefinition);
 
 }

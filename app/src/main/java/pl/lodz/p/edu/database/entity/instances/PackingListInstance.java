@@ -48,9 +48,4 @@ public class PackingListInstance extends BaseEntity {
     public void setStatus(StatusEnum status) {
         this.status = status;
     }
-
-    public static PackingListInstance[] populateData() {
-        //TODO: mladra: populate data
-        return new PackingListInstance[]{};
-    }
 }
