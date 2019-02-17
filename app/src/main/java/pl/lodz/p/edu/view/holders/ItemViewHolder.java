@@ -44,6 +44,7 @@ public class ItemViewHolder extends RecyclerView.ViewHolder {
         } else {
             this.binding.singleItemNameTv.setText(item.getDefinition().getName());
         }
+        this.binding.itemSelectedCheckbox.setChecked(item.getInstance().isSelected());
     }
 
     public ViewDataBinding getBinding() {
