@@ -27,7 +27,7 @@ public interface ItemDefinitionsDao {
     @Insert
     long[] insertAll(ItemDefinition... itemDefinitions);
 
-    @Query("SELECT i.id, i.name, i.max_temp, i.min_temp, i.weather, i.activity " +
+    @Query("SELECT i.id, i.name, i.max_temp, i.min_temp, i.weather, i.activity, i.weight " +
             "FROM items_definitions i " +
             "WHERE i.name = :name")
     ItemDefinition getByName(String name);

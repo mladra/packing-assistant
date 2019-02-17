@@ -1,8 +1,14 @@
 package pl.lodz.p.edu.handlers;
 
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Date;
@@ -14,8 +20,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import pl.lodz.p.edu.R;
 import pl.lodz.p.edu.activities.AddPackingListActivity;
-import pl.lodz.p.edu.api.weather.WeatherService;
-import pl.lodz.p.edu.api.weather.data.WeatherResponse;
+import pl.lodz.p.edu.api.yahoo.WeatherRequest;
+import pl.lodz.p.edu.api.yahoo.WeatherRequestQueue;
+import pl.lodz.p.edu.api.yahoo.WeatherResponse;
 import pl.lodz.p.edu.database.PackAssistantDatabase;
 import pl.lodz.p.edu.database.entity.StatusEnum;
 import pl.lodz.p.edu.database.entity.definitions.ItemDefinition;
@@ -29,11 +36,8 @@ import pl.lodz.p.edu.database.entity.instances.SectionItemInstance;
 import pl.lodz.p.edu.fragments.ChooseActivitiesPackingListFragment;
 import pl.lodz.p.edu.fragments.CreatedPackingListFragment;
 import pl.lodz.p.edu.view.model.PackingListCreationParameters;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-public class AddPackingListClickHandler implements ClickHandler {
+public class AddPackingListClickHandler implements ClickHandler, com.android.volley.Response.Listener<WeatherResponse>, Response.ErrorListener {
 
     private static final String TAG = "AddPackingListClickHand";
 
@@ -89,18 +93,19 @@ public class AddPackingListClickHandler implements ClickHandler {
     }
 
     private void receiveWeatherDataAndGoToTheNextView(PackingListCreationParameters params) {
-        WeatherService.getInstance(activity).getWeatherByCityName(params.getCityName()).enqueue(new Callback<WeatherResponse>() {
-            @Override
-            public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
-                Log.d(TAG, "Response code: " + response.code());
-                Log.d(TAG, "Response: \n" + response.body());
-            }
+        try {
+            final ApplicationInfo applicationInfo = parent.getPackageManager().getApplicationInfo(parent.getPackageName(), PackageManager.GET_META_DATA);
+            final Bundle bundle = applicationInfo.metaData;
 
-            @Override
-            public void onFailure(Call<WeatherResponse> call, Throwable t) {
-                Log.d(TAG, "Failure: " + t.toString());
-            }
-        });
+            final String appId = bundle.getString("APP_ID");
+            final String clientId = bundle.getString("CLIENT_ID");
+            final String clientSecret = bundle.getString("CLIENT_SECRET");
+
+            final WeatherRequest request = new WeatherRequest(Request.Method.GET, null, null, this, this, appId, clientId, clientSecret, params.getCityName());
+            WeatherRequestQueue.getInstance(parent).add(request);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
 
         final FragmentManager manager = activity.getSupportFragmentManager();
         final FragmentTransaction transaction = manager.beginTransaction();
@@ -111,6 +116,16 @@ public class AddPackingListClickHandler implements ClickHandler {
         transaction.addToBackStack(null);
 
         transaction.commit();
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Log.d(TAG, "onErrorResponse: " + error.toString());
+    }
+
+    @Override
+    public void onResponse(WeatherResponse response) {
+        Log.d(TAG, "onResponse: " + response.toString());
     }
 
     private static class CreateListFromTemplateTask extends AsyncTask<PackingListDefinition, Void, Long> {
