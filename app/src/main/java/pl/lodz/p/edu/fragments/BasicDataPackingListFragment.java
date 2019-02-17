@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import io.reactivex.FlowableSubscriber;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
@@ -25,7 +24,6 @@ import pl.lodz.p.edu.database.PackAssistantDatabase;
 import pl.lodz.p.edu.database.entity.definitions.PackingListDefinition;
 import pl.lodz.p.edu.databinding.FragmentBasicDataPackingListBinding;
 import pl.lodz.p.edu.handlers.AddPackingListClickHandler;
-import pl.lodz.p.edu.handlers.DateFromOnFocusChangeListener;
 
 public class BasicDataPackingListFragment extends Fragment {
 
@@ -39,8 +37,6 @@ public class BasicDataPackingListFragment extends Fragment {
         fillTemplateAutocomplete();
         this.binding.setHandler(new AddPackingListClickHandler(getActivity(), parent));
         this.binding.setParams(this.parent.getCreationParameters());
-        this.binding.dateFromEditText.setOnFocusChangeListener(new DateFromOnFocusChangeListener(parent));
-        this.binding.dateToEditText.setOnFocusChangeListener(new DateFromOnFocusChangeListener(parent));
         this.binding.setCheckedListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

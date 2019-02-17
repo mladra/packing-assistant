@@ -7,7 +7,8 @@ public enum WeatherEnum {
     CLOUDY("Cloudy"),
     RAINY("Rainy"),
     STORMY("Stormy"),
-    SNOWY("Snowy");
+    SNOWY("Snowy"),
+    COLD("Cold");
 
     private String displayName;
 

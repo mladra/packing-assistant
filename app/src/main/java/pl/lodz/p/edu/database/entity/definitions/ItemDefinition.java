@@ -122,7 +122,17 @@ public class ItemDefinition extends BaseEntity implements Serializable {
                 new ItemDefinition("Running shoes", ActivityEnum.JOGGING),
                 new ItemDefinition("Basketball shoes", ActivityEnum.PLAYING_BASKETBALL),
                 new ItemDefinition("Football shoes", ActivityEnum.PLAYING_FOOTBALL),
-                new ItemDefinition("Swimming trunks", ActivityEnum.SWIMMING)
+                new ItemDefinition("Swimming trunks", ActivityEnum.SWIMMING),
+                new ItemDefinition("Briefcase", ActivityEnum.OTHER, 5.0D, 15.0D),
+                new ItemDefinition("Briefcase 2", ActivityEnum.OTHER, 16.0D, 25.D),
+                new ItemDefinition("Briefcase 3", ActivityEnum.OTHER, 26.0D, 35.0D),
+                new ItemDefinition("Briefcase 4", ActivityEnum.OTHER, 36.0D, 45.0D),
+                new ItemDefinition("Briefcase 5", ActivityEnum.OTHER, -0.6D, 4.0D),
+                new ItemDefinition("For Sunny", ActivityEnum.OTHER, WeatherEnum.SUNNY),
+                new ItemDefinition("For Windy", ActivityEnum.OTHER, WeatherEnum.WINDY),
+                new ItemDefinition("For Snowy", ActivityEnum.OTHER, WeatherEnum.SNOWY),
+                new ItemDefinition("For Stormy", ActivityEnum.OTHER, WeatherEnum.STORMY),
+                new ItemDefinition("For Rainy", ActivityEnum.OTHER, WeatherEnum.RAINY)
         };
     }
 
@@ -133,7 +143,7 @@ public class ItemDefinition extends BaseEntity implements Serializable {
                 model.getMinTemp(),
                 model.getWeight(),
                 model.getWeather(),
-                model.getActivity()
+                model.getActivity() == null ? ActivityEnum.OTHER : model.getActivity()
         );
     }
 }

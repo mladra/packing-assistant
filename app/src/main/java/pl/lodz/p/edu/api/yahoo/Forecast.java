@@ -1,11 +1,11 @@
 package pl.lodz.p.edu.api.yahoo;
 
-class Forecast {
+public class Forecast {
 
     private String day;
     private Long date;
-    private Long low;
-    private Long high;
+    private Double low;
+    private Double high;
     private String text;
     private Long code;
 
@@ -25,19 +25,19 @@ class Forecast {
         this.date = date;
     }
 
-    public Long getLow() {
+    public Double getLow() {
         return low;
     }
 
-    public void setLow(Long low) {
+    public void setLow(Double low) {
         this.low = low;
     }
 
-    public Long getHigh() {
+    public Double getHigh() {
         return high;
     }
 
-    public void setHigh(Long high) {
+    public void setHigh(Double high) {
         this.high = high;
     }
 

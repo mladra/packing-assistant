@@ -11,8 +11,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import androidx.fragment.app.FragmentActivity;
@@ -20,11 +23,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import pl.lodz.p.edu.R;
 import pl.lodz.p.edu.activities.AddPackingListActivity;
+import pl.lodz.p.edu.api.yahoo.ConditionCodesEnum;
+import pl.lodz.p.edu.api.yahoo.Forecast;
 import pl.lodz.p.edu.api.yahoo.WeatherRequest;
 import pl.lodz.p.edu.api.yahoo.WeatherRequestQueue;
 import pl.lodz.p.edu.api.yahoo.WeatherResponse;
 import pl.lodz.p.edu.database.PackAssistantDatabase;
 import pl.lodz.p.edu.database.entity.StatusEnum;
+import pl.lodz.p.edu.database.entity.WeatherEnum;
 import pl.lodz.p.edu.database.entity.definitions.ItemDefinition;
 import pl.lodz.p.edu.database.entity.definitions.PackingListDefinition;
 import pl.lodz.p.edu.database.entity.definitions.SectionDefinition;
@@ -84,11 +90,8 @@ public class AddPackingListClickHandler implements ClickHandler, com.android.vol
 
         final CreatedPackingListFragment fragment = new CreatedPackingListFragment();
         fragment.setPackingListInstanceId(packingListInstanceId);
-
         transaction.replace(R.id.fragment_container, fragment, "CREATED_LIST_FRAGMENT");
-
         transaction.addToBackStack(null);
-
         transaction.commit();
     }
 
@@ -106,26 +109,78 @@ public class AddPackingListClickHandler implements ClickHandler, com.android.vol
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-
-        final FragmentManager manager = activity.getSupportFragmentManager();
-        final FragmentTransaction transaction = manager.beginTransaction();
-
-        final ChooseActivitiesPackingListFragment fragment = new ChooseActivitiesPackingListFragment();
-        transaction.replace(R.id.fragment_container, fragment, "ACTIVITIES_FRAGMENT");
-
-        transaction.addToBackStack(null);
-
-        transaction.commit();
     }
 
     @Override
     public void onErrorResponse(VolleyError error) {
         Log.d(TAG, "onErrorResponse: " + error.toString());
+        Snackbar.make(parent.getBinding().getRoot(), R.string.destination_error, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
     public void onResponse(WeatherResponse response) {
-        Log.d(TAG, "onResponse: " + response.toString());
+        Log.d(TAG, "onResponse: Successfully obtained weather data.");
+        extractWeatherDataIntoParams(response);
+        goToTheNextView();
+    }
+
+    private void extractWeatherDataIntoParams(WeatherResponse response) {
+        final PackingListCreationParameters parameters = parent.getCreationParameters();
+        parameters.setMinTemp(findMinTemp(response));
+        parameters.setMaxTemp(findMaxTemp(response));
+        parameters.setWeather(findWeatherEnums(response));
+    }
+
+    private List<WeatherEnum> findWeatherEnums(WeatherResponse response) {
+        if (response.getForecasts() == null || response.getForecasts().isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        Set<WeatherEnum> result = new HashSet<>();
+        for (Forecast forecast : response.getForecasts()) {
+            final ConditionCodesEnum condition = ConditionCodesEnum.getByCode(forecast.getCode());
+            if (condition != null && !ConditionCodesEnum.NOT_AVAILABLE.equals(condition)) {
+                result.add(condition.getWeather());
+            }
+        }
+        return new ArrayList<>(result);
+    }
+
+    private Double findMinTemp(WeatherResponse response) {
+        if (response.getForecasts() == null || response.getForecasts().isEmpty()) {
+            return -20.0D;
+        }
+
+        Double min = Double.MAX_VALUE;
+        for (Forecast forecast : response.getForecasts()) {
+            if (forecast.getLow() < min) {
+                min = forecast.getLow();
+            }
+        }
+        return min;
+    }
+
+    private Double findMaxTemp(WeatherResponse response) {
+        if (response.getForecasts() == null || response.getForecasts().isEmpty()) {
+            return 60.0D;
+        }
+
+        Double max = Double.MIN_VALUE;
+        for (Forecast forecast : response.getForecasts()) {
+            if (forecast.getHigh() > max) {
+                max = forecast.getHigh();
+            }
+        }
+        return max;
+    }
+
+    private void goToTheNextView() {
+        final FragmentManager manager = activity.getSupportFragmentManager();
+        final FragmentTransaction transaction = manager.beginTransaction();
+        final ChooseActivitiesPackingListFragment fragment = new ChooseActivitiesPackingListFragment();
+        transaction.replace(R.id.fragment_container, fragment, "ACTIVITIES_FRAGMENT");
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     private static class CreateListFromTemplateTask extends AsyncTask<PackingListDefinition, Void, Long> {

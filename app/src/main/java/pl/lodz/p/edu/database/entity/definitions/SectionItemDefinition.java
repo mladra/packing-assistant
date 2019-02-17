@@ -52,7 +52,17 @@ public class SectionItemDefinition {
                 new SectionItemDefinition(4, 6, true),
                 new SectionItemDefinition(5, 7, true),
                 new SectionItemDefinition(7, 4, true),
-                new SectionItemDefinition(11, 8, true)
+                new SectionItemDefinition(11, 8, true),
+                new SectionItemDefinition(2, 9, false),
+                new SectionItemDefinition(2, 10, false),
+                new SectionItemDefinition(2, 11, false),
+                new SectionItemDefinition(2, 12, false),
+                new SectionItemDefinition(2, 13, false),
+                new SectionItemDefinition(2, 14, false),
+                new SectionItemDefinition(2, 15, false),
+                new SectionItemDefinition(2, 16, false),
+                new SectionItemDefinition(2, 17, false),
+                new SectionItemDefinition(2, 18, false),
         };
     }
 }

@@ -62,7 +62,7 @@ public class WeatherRequest extends JsonRequest<WeatherResponse> {
 
     @Override
     public String getUrl() {
-        return BASE_URL + "?location=" + location + "&format=json";
+        return BASE_URL + "?location=" + location + "&format=json&u=c";
     }
 
     @Override

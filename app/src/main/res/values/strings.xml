@@ -45,4 +45,5 @@
     <string name="choose_template_error">You have to choose template before going further</string>
     <string name="weight_kg">Weight [kg]:</string>
     <string name="divider">/</string>
+    <string name="destination_error">Couldn\'t load weather data for provided destination. Check if destination is correct and try again.</string>
 </resources>

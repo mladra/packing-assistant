@@ -3,7 +3,7 @@ package pl.lodz.p.edu.api.yahoo;
 class Atmosphere {
 
     private Long humidity;
-    private Long visibility;
+    private Double visibility;
     private Double pressure;
 
     public Long getHumidity() {
@@ -14,11 +14,11 @@ class Atmosphere {
         this.humidity = humidity;
     }
 
-    public Long getVisibility() {
+    public Double getVisibility() {
         return visibility;
     }
 
-    public void setVisibility(Long visibility) {
+    public void setVisibility(Double visibility) {
         this.visibility = visibility;
     }
 

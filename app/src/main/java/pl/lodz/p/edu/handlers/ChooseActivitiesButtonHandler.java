@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +20,7 @@ import pl.lodz.p.edu.activities.AddPackingListActivity;
 import pl.lodz.p.edu.database.PackAssistantDatabase;
 import pl.lodz.p.edu.database.entity.ActivityEnum;
 import pl.lodz.p.edu.database.entity.StatusEnum;
+import pl.lodz.p.edu.database.entity.WeatherEnum;
 import pl.lodz.p.edu.database.entity.definitions.ItemDefinition;
 import pl.lodz.p.edu.database.entity.definitions.PackingListDefinition;
 import pl.lodz.p.edu.database.entity.definitions.SectionDefinition;
@@ -75,11 +77,12 @@ public class ChooseActivitiesButtonHandler implements ClickHandler {
     }
 
     private String[] getModelNames() {
-        List<String> names = new ArrayList<>();
+        final List<String> names = new ArrayList<>();
         names.add("General");
         for (ActivityEnum activity : this.params.getActivities()) {
             names.add(activity.getName());
         }
+        names.add("Other");
         return names.toArray(new String[0]);
     }
 
@@ -146,6 +149,10 @@ public class ChooseActivitiesButtonHandler implements ClickHandler {
                 List<ItemDefinition> items = itemDefinitionsBySectionId.get(sectionDefinition.getId());
 
                 if (items != null && !items.isEmpty()) {
+                    if (sectionDefinition.getName().equals("Other")) {
+                        items = filterItems(items, params);
+                    }
+
                     for (ItemDefinition itemDefinition : items) {
                         final ItemInstance itemInstance = new ItemInstance(itemDefinition.getId());
                         long itemInstanceId = db.itemInstancesDao().insertSingle(itemInstance);
@@ -156,6 +163,20 @@ public class ChooseActivitiesButtonHandler implements ClickHandler {
                 }
             }
             return packingListInstanceId;
+        }
+
+        private List<ItemDefinition> filterItems(List<ItemDefinition> items, PackingListCreationParameters params) {
+            final double minTemp = params.getMinTemp();
+            final double maxTemp = params.getMaxTemp();
+            final List<WeatherEnum> weathers = params.getWeather();
+
+            final List<ItemDefinition> filtered = new ArrayList<>();
+            for (ItemDefinition itemDefinition : items) {
+                if (((itemDefinition.getMinTemp() != null && itemDefinition.getMinTemp() >= minTemp) && (itemDefinition.getMaxTemp() != null && itemDefinition.getMaxTemp() <= maxTemp)) || weathers.contains(itemDefinition.getWeather())) {
+                    filtered.add(itemDefinition);
+                }
+            }
+            return filtered;
         }
     }
 }
