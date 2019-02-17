@@ -26,10 +26,6 @@ public abstract class AbstractPackingListHandler implements ClickHandler {
     public void onClick() {
         final SaveItemInstancesAsyncTask task = new SaveItemInstancesAsyncTask(fragment);
         task.execute(fragment.getPackingList());
-        final FragmentActivity activity = fragment.getActivity();
-        if (activity != null) {
-            activity.finish();
-        }
     }
 
     private static class SaveItemInstancesAsyncTask extends AsyncTask<PackingList, Void, Void> {

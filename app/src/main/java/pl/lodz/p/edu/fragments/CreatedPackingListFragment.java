@@ -26,6 +26,7 @@ import pl.lodz.p.edu.database.entity.definitions.SectionDefinition;
 import pl.lodz.p.edu.database.entity.instances.ItemInstance;
 import pl.lodz.p.edu.database.entity.instances.PackingListInstance;
 import pl.lodz.p.edu.database.entity.instances.SectionInstance;
+import pl.lodz.p.edu.database.entity.instances.SectionItemInstance;
 import pl.lodz.p.edu.databinding.FragmentShowPackingListBinding;
 import pl.lodz.p.edu.handlers.ClosePackingListHandler;
 import pl.lodz.p.edu.handlers.SavePackingListHandler;
@@ -124,7 +125,8 @@ public class CreatedPackingListFragment extends Fragment {
                     final List<Item> items = new ArrayList<>();
                     for (ItemInstance itemInstance : itemInstances) {
                         final ItemDefinition itemDefinition = db.itemDefinitionsDao().getById(itemInstance.getDefinitionId());
-                        final Item item = new Item(itemDefinition, itemInstance);
+                        final SectionItemInstance sectionItemInstance = db.sectionItemInstancesDao().byItemIdAndSectionId(itemInstance.getId(), sectionInstance.getId());
+                        final Item item = new Item(itemDefinition, itemInstance, sectionItemInstance);
                         items.add(item);
                     }
                     final Section section = new Section(sectionDefinition, sectionInstance, items);

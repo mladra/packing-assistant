@@ -3,14 +3,20 @@ package pl.lodz.p.edu.handlers;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.fragment.app.FragmentActivity;
+import pl.lodz.p.edu.R;
 import pl.lodz.p.edu.database.PackAssistantDatabase;
 import pl.lodz.p.edu.database.entity.StatusEnum;
 import pl.lodz.p.edu.database.entity.instances.PackingListInstance;
 import pl.lodz.p.edu.fragments.CreatedPackingListFragment;
+import pl.lodz.p.edu.view.model.Item;
 import pl.lodz.p.edu.view.model.PackingList;
+import pl.lodz.p.edu.view.model.Section;
 
 public class ClosePackingListHandler extends AbstractPackingListHandler implements ClickHandler {
 
@@ -21,8 +27,28 @@ public class ClosePackingListHandler extends AbstractPackingListHandler implemen
     @Override
     public void onClick() {
         super.onClick();
-        final ClosePackingListInstanceTask task = new ClosePackingListInstanceTask(fragment);
-        task.execute(fragment.getPackingList());
+        if (allRequiredItemsChecked()) {
+            final ClosePackingListInstanceTask task = new ClosePackingListInstanceTask(fragment);
+            task.execute(fragment.getPackingList());
+            final FragmentActivity activity = fragment.getActivity();
+            if (activity != null) {
+                activity.finish();
+            }
+        } else {
+            Snackbar.make(fragment.getView(), R.string.required_items_not_checked_error, Snackbar.LENGTH_LONG).show();
+        }
+    }
+
+    private boolean allRequiredItemsChecked() {
+        final PackingList packingList = fragment.getPackingList();
+        for (Section section : packingList.getSections()) {
+            for (Item item : section.getItems()) {
+                if (item.getSectionItemInstance().isRequired() && !item.getInstance().isSelected()) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     private static class ClosePackingListInstanceTask extends AsyncTask<PackingList, Void, Void> {

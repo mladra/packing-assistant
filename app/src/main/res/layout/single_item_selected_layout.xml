@@ -14,6 +14,10 @@
             type="pl.lodz.p.edu.database.entity.definitions.ItemDefinition" />
 
         <variable
+            name="sectionItemInstance"
+            type="pl.lodz.p.edu.database.entity.instances.SectionItemInstance" />
+
+        <variable
             name="instance"
             type="pl.lodz.p.edu.database.entity.instances.ItemInstance" />
 
@@ -34,7 +38,6 @@
             android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="@{definition.name}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

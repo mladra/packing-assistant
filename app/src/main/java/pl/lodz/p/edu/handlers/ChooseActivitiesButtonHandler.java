@@ -156,7 +156,7 @@ public class ChooseActivitiesButtonHandler implements ClickHandler {
                     for (ItemDefinition itemDefinition : items) {
                         final ItemInstance itemInstance = new ItemInstance(itemDefinition.getId());
                         long itemInstanceId = db.itemInstancesDao().insertSingle(itemInstance);
-                        db.sectionItemInstancesDao().insertSingle(new SectionItemInstance(sectionInstanceId, itemInstanceId, false));
+                        db.sectionItemInstancesDao().insertSingle(new SectionItemInstance(sectionInstanceId, itemInstanceId, sectionDefinition.getName().equals("General")));
                     }
 
                     db.packingListSectionInstancesDao().insertSingle(new PackingListSectionInstance(packingListInstanceId, sectionInstanceId, false));
