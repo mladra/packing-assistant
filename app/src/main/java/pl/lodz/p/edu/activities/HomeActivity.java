@@ -3,11 +3,12 @@ package pl.lodz.p.edu.activities;
 import android.os.Bundle;
 
 import pl.lodz.p.edu.R;
-import pl.lodz.p.edu.api.weather.WeatherService;
 import pl.lodz.p.edu.databinding.ActivityHomeBinding;
 import pl.lodz.p.edu.handlers.ViewTransitionClickHandler;
 
 public class HomeActivity extends AbstractActivity<ActivityHomeBinding> {
+
+    private static final String TAG = "HomeActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
