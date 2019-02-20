@@ -27,6 +27,7 @@
 
         <activity
             android:name="pl.lodz.p.edu.activities.HomeActivity"
+            android:label="@string/home_title"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,21 +36,23 @@
         </activity>
         <activity
             android:name="pl.lodz.p.edu.activities.AddPackingListActivity"
+            android:label="@string/generate_packing_list_title"
             android:screenOrientation="portrait" />
         <activity
             android:name="pl.lodz.p.edu.activities.ItemsActivity"
+            android:label="@string/items_title"
             android:screenOrientation="portrait" />
         <activity
             android:name="pl.lodz.p.edu.activities.PackingListsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="pl.lodz.p.edu.activities.SectionsActivity"
+            android:label="@string/packing_lists_title"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.AddTemplateActivity"
+            android:label="@string/add_template_title"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.TemplatesActivity"
+            android:label="@string/templates_title"
             android:screenOrientation="portrait" />
     </application>
 

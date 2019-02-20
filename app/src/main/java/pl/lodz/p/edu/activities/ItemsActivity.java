@@ -33,7 +33,6 @@ public class ItemsActivity extends AbstractActivity<ActivityItemsBinding> {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.initBinding(R.layout.activity_items);
-        setHeaderTitle(R.string.items_title);
 
         final Intent intent = getIntent();
         if (intent != null) {

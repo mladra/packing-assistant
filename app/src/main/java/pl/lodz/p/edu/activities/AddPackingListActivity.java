@@ -46,8 +46,6 @@ public class AddPackingListActivity extends AbstractActivity<ActivityAddPackingL
         fragmentTransaction.replace(R.id.fragment_container, fragment, fragmentTag);
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragmentTransaction.commit();
-
-        setHeaderTitle(R.string.generate_packing_list_title);
     }
 
     @Override

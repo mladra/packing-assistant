@@ -23,7 +23,6 @@ public class TemplatesActivity extends AbstractActivity<ActivityTemplatesBinding
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.initBinding(R.layout.activity_templates);
-        setHeaderTitle(R.string.templates_title);
 
         binding.setHandler(new ViewTransitionClickHandler(this, AddTemplateActivity.class));
 

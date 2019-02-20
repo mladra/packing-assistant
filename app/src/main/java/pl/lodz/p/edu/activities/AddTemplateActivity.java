@@ -38,7 +38,6 @@ public class AddTemplateActivity extends AbstractActivity<ActivityAddTemplateBin
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.initBinding(R.layout.activity_add_template);
-        setHeaderTitle(R.string.add_template_title);
 
         binding.templateSectionsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.setTemplate(template);

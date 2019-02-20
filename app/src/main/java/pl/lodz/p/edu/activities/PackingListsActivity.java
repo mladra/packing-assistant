@@ -26,7 +26,6 @@ public class PackingListsActivity extends AbstractActivity<ActivityPackingListsB
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.initBinding(R.layout.activity_packing_lists);
-        setHeaderTitle(R.string.packing_lists_title);
         initPackingListsRecyclerView();
     }
 
