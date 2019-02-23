@@ -3,9 +3,11 @@ package pl.lodz.p.edu.view.model;
 
 import pl.lodz.p.edu.database.entity.ActivityEnum;
 import pl.lodz.p.edu.database.entity.WeatherEnum;
+import pl.lodz.p.edu.database.entity.definitions.ItemDefinition;
 
 public class NewItemDataModel {
 
+    private Long id;
     private String name;
     private Double minTemp;
     private Double maxTemp;
@@ -68,5 +70,25 @@ public class NewItemDataModel {
 
     public void setRequired(boolean required) {
         this.required = required;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public static NewItemDataModel of(final ItemDefinition itemDefinition) {
+        final NewItemDataModel model = new NewItemDataModel();
+        model.setId(itemDefinition.getId());
+        model.setName(itemDefinition.getName());
+        model.setMinTemp(itemDefinition.getMinTemp());
+        model.setMaxTemp(itemDefinition.getMaxTemp());
+        model.setWeight(itemDefinition.getWeight());
+        model.setActivity(itemDefinition.getActivity());
+        model.setActivity(itemDefinition.getActivity());
+        return model;
     }
 }

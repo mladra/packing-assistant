@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -15,6 +15,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
 
+        <!--Parameters for yahoo requests-->
         <meta-data
             android:name="APP_ID"
             android:value="TnEWkQ76" />
@@ -27,7 +28,7 @@
 
         <activity
             android:name="pl.lodz.p.edu.activities.HomeActivity"
-            android:label="@string/home_title"
+            android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

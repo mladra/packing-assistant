@@ -5,8 +5,11 @@ import java.util.List;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 import pl.lodz.p.edu.database.entity.definitions.SectionItemDefinition;
 import io.reactivex.Flowable;
+
+import static androidx.room.OnConflictStrategy.REPLACE;
 
 @Dao
 public interface SectionItemDefinitionsDao {
@@ -17,4 +20,9 @@ public interface SectionItemDefinitionsDao {
     @Insert
     void insertAll(SectionItemDefinition... sectionItemDefinitions);
 
+    @Query("SELECT * FROM section_item_definitions sec_def WHERE sec_def.item_id = :itemId")
+    SectionItemDefinition getByItemId(long itemId);
+
+    @Update(onConflict = REPLACE)
+    void update(SectionItemDefinition sectionItemDefinition);
 }

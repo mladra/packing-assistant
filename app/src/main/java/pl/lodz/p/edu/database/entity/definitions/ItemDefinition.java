@@ -65,6 +65,12 @@ public class ItemDefinition extends BaseEntity implements Serializable {
         this.weight = weight;
     }
 
+    @Ignore
+    public ItemDefinition(Long id, String name, Double maxTemp, Double minTemp, Double weight, WeatherEnum weather, ActivityEnum activity) {
+        this(name, maxTemp, minTemp, weight, weather, activity);
+        this.setId(id);
+    }
+
     public String getName() {
         return name;
     }
@@ -138,6 +144,7 @@ public class ItemDefinition extends BaseEntity implements Serializable {
 
     public static ItemDefinition of(NewItemDataModel model) {
         return new ItemDefinition(
+                model.getId(),
                 model.getName(),
                 model.getMaxTemp(),
                 model.getMinTemp(),

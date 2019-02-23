@@ -45,7 +45,7 @@ import pl.lodz.p.edu.database.entity.instances.SectionItemInstance;
         SectionInstance.class,
         PackingListInstance.class,
         SectionItemInstance.class,
-        PackingListSectionInstance.class}, version = 10, exportSchema = false)
+        PackingListSectionInstance.class}, version = 11, exportSchema = false)
 @TypeConverters({DateTypeConverter.class, ActivityEnumTypeConverter.class, StatusEnumTypeConverter.class, WeatherEnumTypeConverter.class})
 public abstract class PackAssistantDatabase extends RoomDatabase {
 

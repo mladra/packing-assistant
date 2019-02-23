@@ -6,8 +6,11 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 import pl.lodz.p.edu.database.entity.definitions.ItemDefinition;
 import io.reactivex.Flowable;
+
+import static androidx.room.OnConflictStrategy.REPLACE;
 
 @Dao
 public interface ItemDefinitionsDao {
@@ -34,5 +37,8 @@ public interface ItemDefinitionsDao {
 
     @Delete
     void delete(ItemDefinition... itemDefinition);
+
+    @Update(onConflict = REPLACE)
+    void update(ItemDefinition itemDefinition);
 
 }

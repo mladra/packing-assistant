@@ -14,10 +14,10 @@ import androidx.room.ForeignKey;
                         parentColumns = "id",
                         childColumns = "item_id")
         })
-public class SectionItemDefinition {
+public class SectionItemDefinition extends BaseEntity {
 
     @ColumnInfo(name = "section_id")
-    private final long sectionId;
+    private long sectionId;
 
     @ColumnInfo(name = "item_id")
     private final long itemId;
@@ -41,6 +41,10 @@ public class SectionItemDefinition {
 
     public boolean isRequired() {
         return required;
+    }
+
+    public void setSectionId(long sectionId) {
+        this.sectionId = sectionId;
     }
 
     public static SectionItemDefinition[] populateData() {

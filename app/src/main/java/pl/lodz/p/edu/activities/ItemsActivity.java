@@ -21,7 +21,8 @@ import pl.lodz.p.edu.activities.extras.ResultCodesEnum;
 import pl.lodz.p.edu.database.PackAssistantDatabase;
 import pl.lodz.p.edu.database.entity.definitions.ItemDefinition;
 import pl.lodz.p.edu.databinding.ActivityItemsBinding;
-import pl.lodz.p.edu.handlers.AddItemClickHandler;
+import pl.lodz.p.edu.handlers.AddEditItemClickHandler;
+import pl.lodz.p.edu.view.adapters.ItemViewAdapter;
 import pl.lodz.p.edu.view.adapters.ViewAdapter;
 import pl.lodz.p.edu.view.model.SelectedItemDataModel;
 
@@ -39,7 +40,7 @@ public class ItemsActivity extends AbstractActivity<ActivityItemsBinding> {
             this.selectionMode = intent.getBooleanExtra(ExtrasCodesEnum.SELECTION_MODE.name(), false);
         }
 
-        this.binding.setHandler(new AddItemClickHandler(this));
+        this.binding.setHandler(new AddEditItemClickHandler(this, null));
         initItemsRecyclerView();
     }
 
@@ -62,7 +63,7 @@ public class ItemsActivity extends AbstractActivity<ActivityItemsBinding> {
                 if (selectionMode) {
                     binding.itemsRecyclerView.setAdapter(new ViewAdapter<>(createItemSelectedModel(itemDefinitions), R.layout.single_item_selection_layout));
                 } else {
-                    binding.itemsRecyclerView.setAdapter(new ViewAdapter<>(itemDefinitions, R.layout.single_item_layout));
+                    binding.itemsRecyclerView.setAdapter(new ItemViewAdapter(itemDefinitions, R.layout.single_item_layout, ItemsActivity.this));
                 }
             }
         };

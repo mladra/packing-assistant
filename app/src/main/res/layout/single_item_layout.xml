@@ -3,17 +3,21 @@
     android:id="@+id/layout">
 
     <data>
-
         <variable
             name="obj"
             type="pl.lodz.p.edu.database.entity.definitions.ItemDefinition" />
+
+        <variable
+            name="handler"
+            type="pl.lodz.p.edu.handlers.ClickHandler" />
 
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_margin="4dp">
+        android:layout_margin="4dp"
+        android:onClick="@{(v) -> handler.onClick()}">
 
         <TextView
             android:id="@+id/single_item_name_tv"
