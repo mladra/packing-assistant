@@ -15,6 +15,8 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -29,23 +31,29 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.30"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:text="@string/name_label"
-                android:textStyle="bold" />
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.30"
-                android:textStyle="bold"
-                android:text="@string/weight_label"/>
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="@string/weight_label"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/single_item_activity_label_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.40"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:text="@string/activity_label"
-                android:textStyle="bold" />
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
