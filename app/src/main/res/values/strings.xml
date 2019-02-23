@@ -12,10 +12,12 @@
     <string name="template_name">Template name</string>
     <string name="none">-</string>
     <string name="activity_label">Activity</string>
+    <string name="activity_label_2">Activity:</string>
     <string name="weather_label">Weather</string>
     <string name="max_temp_label">Max\ntemp</string>
     <string name="min_temp_label">Min\ntemp</string>
     <string name="name_label">Name</string>
+    <string name="name_label_2">Name:</string>
     <string name="generate_packing_list_title">Generate packing list</string>
     <string name="add_template_title">Add template</string>
     <string name="home_title">Home</string>
@@ -36,6 +38,7 @@
     <string name="add">Add</string>
     <string name="remove_title">Remove</string>
     <string name="weight_label">Weight [kg]</string>
+    <string name="weight_label_2">Weight [kg]:</string>
     <string name="weight_label_create">Weight</string>
     <string name="created_on_label">Created on:</string>
     <string name="status_label">Status:</string>
