@@ -6,8 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activities.PackingListsActivity"
-        android:background="@android:color/darker_gray">
+        tools:context=".activities.PackingListsActivity">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/packing_lists_recycler_view"
