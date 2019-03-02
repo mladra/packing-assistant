@@ -173,7 +173,7 @@ public class AddEditItemClickHandler implements ClickHandler {
 
                     if (itemDataModel.getActivity() != null) {
                         List<SectionDefinition> sectionDefinition = db.sectionDefinitionsDao().getByName(itemDataModel.getActivity().getName());
-                        db.sectionItemDefinitionsDao().insertAll(new SectionItemDefinition(sectionDefinition.iterator().next().getId(), ids[0], itemDataModel.isRequired()));
+                        db.sectionItemDefinitionsDao().insertAll(new SectionItemDefinition(sectionDefinition.iterator().next().getId(), ids[0], false));
                     }
                 } else {
                     db.itemDefinitionsDao().update(ItemDefinition.of(itemDataModel));
@@ -200,7 +200,8 @@ public class AddEditItemClickHandler implements ClickHandler {
                 Snackbar.make(view, exception.getMessage(), Snackbar.LENGTH_LONG).show();
                 Log.d(TAG, exception.getMessage());
             } else {
-                Snackbar.make(view, activity.getString(R.string.item_successfully_created), Snackbar.LENGTH_LONG).show();
+                final String msg = this.editMode ? activity.getString(R.string.item_successfully_updated) : activity.getString(R.string.item_successfully_created);
+                Snackbar.make(view, msg, Snackbar.LENGTH_LONG).show();
             }
         }
     }

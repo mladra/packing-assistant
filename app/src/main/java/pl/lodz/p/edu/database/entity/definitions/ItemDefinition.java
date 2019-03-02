@@ -68,7 +68,7 @@ public class ItemDefinition extends BaseEntity implements Serializable {
     @Ignore
     public ItemDefinition(Long id, String name, Double maxTemp, Double minTemp, Double weight, WeatherEnum weather, ActivityEnum activity) {
         this(name, maxTemp, minTemp, weight, weather, activity);
-        this.setId(id);
+        this.setId(id == null ? 0 : id);
     }
 
     public String getName() {

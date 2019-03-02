@@ -14,7 +14,6 @@ public class NewItemDataModel {
     private Double weight;
     private WeatherEnum weather;
     private ActivityEnum activity;
-    private boolean required;
 
     public String getName() {
         return name;
@@ -62,14 +61,6 @@ public class NewItemDataModel {
 
     public void setActivity(ActivityEnum activity) {
         this.activity = activity;
-    }
-
-    public boolean isRequired() {
-        return required;
-    }
-
-    public void setRequired(boolean required) {
-        this.required = required;
     }
 
     public Long getId() {
