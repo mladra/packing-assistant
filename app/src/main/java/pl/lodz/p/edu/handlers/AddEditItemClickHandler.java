@@ -73,6 +73,12 @@ public class AddEditItemClickHandler implements ClickHandler {
                     @Override
                     public void onClick(View v) {
                         Log.d(TAG, "Updating item...");
+                        final WeatherEnum weatherEnum = (WeatherEnum) binding.weatherAutocomplete.getSelectedItem();
+                        final ActivityEnum activityEnum = (ActivityEnum) binding.activityAutocomplete.getSelectedItem();
+
+                        final NewItemDataModel newItemDataModel = binding.getNewItem();
+                        newItemDataModel.setWeather(weatherEnum);
+                        newItemDataModel.setActivity(activityEnum);
                         validateAndSave(binding.getNewItem(), activity.getWindow().getDecorView().findViewById(android.R.id.content), true);
                         dialog.dismiss();
                     }
@@ -105,7 +111,14 @@ public class AddEditItemClickHandler implements ClickHandler {
                     @Override
                     public void onClick(View v) {
                         Log.d(TAG, "Creating item...");
-                        validateAndSave(binding.getNewItem(), activity.getWindow().getDecorView().findViewById(android.R.id.content), false);
+                        final WeatherEnum weatherEnum = (WeatherEnum) binding.weatherAutocomplete.getSelectedItem();
+                        final ActivityEnum activityEnum = (ActivityEnum) binding.activityAutocomplete.getSelectedItem();
+
+                        final NewItemDataModel newItemDataModel = binding.getNewItem();
+                        newItemDataModel.setWeather(weatherEnum);
+                        newItemDataModel.setActivity(activityEnum);
+
+                        validateAndSave(newItemDataModel, activity.getWindow().getDecorView().findViewById(android.R.id.content), false);
                         dialog.dismiss();
                     }
                 });
@@ -179,13 +192,15 @@ public class AddEditItemClickHandler implements ClickHandler {
                     db.itemDefinitionsDao().update(ItemDefinition.of(itemDataModel));
                     if (itemDataModel.getActivity() != null) {
                         final SectionItemDefinition sectionItemDefinition = db.sectionItemDefinitionsDao().getByItemId(itemDataModel.getId());
-                        final SectionDefinition sectionDefinition = db.sectionDefinitionsDao().getById(sectionItemDefinition.getSectionId());
-                        if (!itemDataModel.getActivity().getName().equals(sectionDefinition.getName())) {
-                            final List<SectionDefinition> newSectionDefinition = db.sectionDefinitionsDao().getByName(itemDataModel.getActivity().getName());
-                            if (newSectionDefinition != null && newSectionDefinition.size() == 1) {
-                                final long newSectionDefinitionId = newSectionDefinition.iterator().next().getId();
-                                sectionItemDefinition.setSectionId(newSectionDefinitionId);
-                                db.sectionItemDefinitionsDao().update(sectionItemDefinition);
+                        if (sectionItemDefinition != null) {
+                            final SectionDefinition sectionDefinition = db.sectionDefinitionsDao().getById(sectionItemDefinition.getSectionId());
+                            if (!itemDataModel.getActivity().getName().equals(sectionDefinition.getName())) {
+                                final List<SectionDefinition> newSectionDefinition = db.sectionDefinitionsDao().getByName(itemDataModel.getActivity().getName());
+                                if (newSectionDefinition != null && newSectionDefinition.size() == 1) {
+                                    final long newSectionDefinitionId = newSectionDefinition.iterator().next().getId();
+                                    sectionItemDefinition.setSectionId(newSectionDefinitionId);
+                                    db.sectionItemDefinitionsDao().update(sectionItemDefinition);
+                                }
                             }
                         }
                     }

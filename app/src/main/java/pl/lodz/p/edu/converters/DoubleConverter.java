@@ -14,7 +14,11 @@ public class DoubleConverter {
     }
 
     public static Double toDouble(String value) {
-        return Double.valueOf(value.replace(COMA, DOT));
+        try {
+            return value == null || value.isEmpty() ? 0D : Double.valueOf(value.replace(COMA, DOT));
+        } catch (NumberFormatException exc) {
+            return 0D;
+        }
     }
 
 }

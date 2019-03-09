@@ -34,6 +34,7 @@ import pl.lodz.p.edu.database.entity.WeatherEnum;
 import pl.lodz.p.edu.database.entity.definitions.ItemDefinition;
 import pl.lodz.p.edu.database.entity.definitions.PackingListDefinition;
 import pl.lodz.p.edu.database.entity.definitions.SectionDefinition;
+import pl.lodz.p.edu.database.entity.definitions.SectionItemDefinition;
 import pl.lodz.p.edu.database.entity.instances.ItemInstance;
 import pl.lodz.p.edu.database.entity.instances.PackingListInstance;
 import pl.lodz.p.edu.database.entity.instances.PackingListSectionInstance;
@@ -209,8 +210,9 @@ public class AddPackingListClickHandler implements ClickHandler, com.android.vol
                             final long sectionInstanceId = db.sectionInstancesDao().insertSingle(sectionInstance);
                             for (final ItemDefinition itemDefinition : sectionItems) {
                                 final ItemInstance itemInstance = new ItemInstance(itemDefinition.getId());
+                                final SectionItemDefinition sectionItemDefinition = db.sectionItemDefinitionsDao().getByItemIdAndSectionId(itemDefinition.getId(), sectionDefinition.getId());
                                 final long itemInstanceId = db.itemInstancesDao().insertSingle(itemInstance);
-                                db.sectionItemInstancesDao().insertSingle(new SectionItemInstance(sectionInstanceId, itemInstanceId, false));
+                                db.sectionItemInstancesDao().insertSingle(new SectionItemInstance(sectionInstanceId, itemInstanceId, sectionItemDefinition.isRequired()));
                             }
 
                             db.packingListSectionInstancesDao().insertSingle(new PackingListSectionInstance(packingListInstanceId, sectionInstanceId, false));

@@ -1,7 +1,5 @@
 package pl.lodz.p.edu.view.holders;
 
-import java.util.List;
-
 import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 import pl.lodz.p.edu.databinding.SingleTemplateItemLayoutBinding;

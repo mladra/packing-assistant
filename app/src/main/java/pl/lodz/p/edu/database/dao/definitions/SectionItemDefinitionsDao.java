@@ -23,6 +23,9 @@ public interface SectionItemDefinitionsDao {
     @Query("SELECT * FROM section_item_definitions sec_def WHERE sec_def.item_id = :itemId")
     SectionItemDefinition getByItemId(long itemId);
 
+    @Query("SELECT * FROM section_item_definitions sec_def WHERE sec_def.item_id = :itemId AND sec_def.section_id = :sectionId")
+    SectionItemDefinition getByItemIdAndSectionId(long itemId, long sectionId);
+
     @Update(onConflict = REPLACE)
     void update(SectionItemDefinition sectionItemDefinition);
 }

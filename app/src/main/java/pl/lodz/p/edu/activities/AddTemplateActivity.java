@@ -119,7 +119,7 @@ public class AddTemplateActivity extends AbstractActivity<ActivityAddTemplateBin
         List<TemplateSectionItem> result = new ArrayList<>();
         if (items != null && items.size() > 0) {
             for (ItemDefinition definition : items) {
-                result.add(new TemplateSectionItem(definition.getName()));
+                result.add(new TemplateSectionItem(definition.getName(), false));
             }
         }
         return result;
@@ -155,7 +155,7 @@ public class AddTemplateActivity extends AbstractActivity<ActivityAddTemplateBin
                             if (section.getItems() != null && !section.getItems().isEmpty()) {
                                 for (final TemplateSectionItem item : section.getItems()) {
                                     final ItemDefinition itemDefinition = db.itemDefinitionsDao().getByName(item.getName());
-                                    final SectionItemDefinition sectionItemDefinition = new SectionItemDefinition(sectionId, itemDefinition.getId(), false);
+                                    final SectionItemDefinition sectionItemDefinition = new SectionItemDefinition(sectionId, itemDefinition.getId(), item.isRequired());
                                     db.sectionItemDefinitionsDao().insertAll(sectionItemDefinition);
                                 }
                             }

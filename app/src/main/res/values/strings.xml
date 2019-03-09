@@ -51,4 +51,6 @@
     <string name="divider">/</string>
     <string name="destination_error">Couldn\'t load weather data for provided destination. Check if destination is correct and try again.</string>
     <string name="required_items_not_checked_error">Cannot close packing list. Not all required items have been checked.</string>
+    <string name="weather_spinner_label">Weather</string>
+    <string name="activity_spinner_label">Activity</string>
 </resources>

@@ -121,9 +121,9 @@ public class ItemDefinition extends BaseEntity implements Serializable {
 
     public static ItemDefinition[] populateData() {
         return new ItemDefinition[]{
-                new ItemDefinition("Passport"),
-                new ItemDefinition("Money"),
-                new ItemDefinition("ID Card"),
+                new ItemDefinition("Passport", ActivityEnum.GENERAL),
+                new ItemDefinition("Money", ActivityEnum.GENERAL),
+                new ItemDefinition("ID Card", ActivityEnum.GENERAL),
                 new ItemDefinition("Bike shoes", ActivityEnum.RIDING_A_BIKE),
                 new ItemDefinition("Running shoes", ActivityEnum.JOGGING),
                 new ItemDefinition("Basketball shoes", ActivityEnum.PLAYING_BASKETBALL),
