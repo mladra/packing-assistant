@@ -21,10 +21,10 @@
             android:value="TnEWkQ76" />
         <meta-data
             android:name="CLIENT_ID"
-            android:value="dj0yJmk9VkJvQ05SUUs5aEdWJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PThj" />
+            android:value="<paste your client id here>" />
         <meta-data
             android:name="CLIENT_SECRET"
-            android:value="35d4a1016c982b4587002e5c456e3deaadd1d178" />
+            android:value="<paste your secret here>" />
 
         <activity
             android:name="pl.lodz.p.edu.activities.HomeActivity"
