@@ -18,7 +18,7 @@
         <!--Parameters for yahoo requests-->
         <meta-data
             android:name="APP_ID"
-            android:value="TnEWkQ76" />
+            android:value="<paste your app id here>" />
         <meta-data
             android:name="CLIENT_ID"
             android:value="<paste your client id here>" />
